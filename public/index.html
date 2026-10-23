@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parturi Kuura – parturi Jyväskylän keskustassa</title>
+  <meta name="description" content="Parturi Jyväskylän keskustassa. Hiustenleikkaukset, parran muotoilu ja värjäykset. Varaa aika verkosta.">
+  
+  <meta name="theme-color" content="#16302b">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <div class="demo-strip">Esittelysivu: Parturi Kuura on kuvitteellinen yritys. Varaukset ovat testivarauksia.</div>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+<path d="M16 3v26M4.7 9.5l22.6 13M4.7 22.5l22.6-13"/><path d="M12.5 5.5 16 9l3.5-3.5M12.5 26.5 16 23l3.5 3.5M5 14l4.8-1.2L8.5 8M27 18l-4.8 1.2 1.3 4.8M5 18l4.8 1.2L8.5 24M27 14l-4.8-1.2L23.5 8"/></svg>Parturi Kuura</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav">Valikko</button>
+      <nav class="nav" id="nav" aria-label="Päävalikko">
+        <a href="/" aria-current="page">Etusivu</a>
+        <a href="/palvelut">Palvelut ja hinnat</a>
+        <a href="/yhteystiedot">Yhteystiedot</a>
+        <a class="btn btn-small" href="/varaa">Varaa aika</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <h1>Hiukset kuntoon ilman jonottamista.</h1>
+          <p class="hero-lead">Leikkaukset, parrat ja värit Jyväskylän keskustassa. Valitse aika verkossa, vahvistus tulee sähköpostiin heti.</p>
+          <div class="hero-actions">
+            <a class="btn" href="/varaa">Varaa aika</a>
+            <a class="btn btn-ghost" href="/palvelut">Katso hinnasto</a>
+          </div>
+        </div>
+        <aside class="next-slots" aria-live="polite">
+          <h2>Seuraavat vapaat ajat</h2>
+          <p class="day-label" data-next-label>Haetaan vapaita aikoja…</p>
+          <div class="slot-chips" data-next-slots></div>
+          <a class="more" href="/varaa">Kaikki ajat</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="wrap two-col">
+        <div>
+          <h2>Palvelut</h2>
+          <p class="muted">Hinnat sisältävät pesun ja muotoilun. Maksu paikan päällä kortilla tai MobilePaylla.</p>
+          <a class="btn btn-quiet btn-small" href="/palvelut">Koko hinnasto</a>
+        </div>
+        <ul class="price-list" data-price-list data-limit="4"></ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap two-col">
+        <div>
+          <h2>Aukioloajat</h2>
+          <table class="hours" data-hours>
+          <tbody>
+            <tr><td>Maanantai</td><td>9–17</td></tr><tr><td>Tiistai</td><td>9–17</td></tr>
+            <tr><td>Keskiviikko</td><td>9–18</td></tr><tr><td>Torstai</td><td>9–17</td></tr>
+            <tr><td>Perjantai</td><td>9–16</td></tr><tr><td>Lauantai</td><td>10–14</td></tr>
+            <tr><td>Sunnuntai</td><td>Suljettu</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div>
+          <h2>Löydät meidät</h2>
+          <p>Esimerkkikatu 5, 40100 Jyväskylä<br>Sisäänkäynti kadun puolelta, esteetön kulku.</p>
+          <p>Lähin pysäköinti kauppakeskuksen parkkihallissa, kävelymatkaa kaksi minuuttia.</p>
+          <p><a href="tel:0400000000">040 000 0000</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <strong>Parturi Kuura</strong>
+        <p>Esimerkkikatu 5, 40100 Jyväskylä</p>
+        <p><a href="tel:0400000000">040 000 0000</a> · <a href="mailto:hello@parturikuura.example">hello@parturikuura.example</a></p>
+      </div>
+      <div>
+        <strong>Asiointi</strong>
+        <p><a href="/varaa">Varaa aika</a></p>
+        <p><a href="/palvelut">Hinnasto</a></p>
+      </div>
+      <div>
+        <strong>Muuta</strong>
+        <p><a href="/tietosuoja">Tietosuojaseloste</a></p>
+        <p><a href="/hallinta">Yrittäjälle</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="/assets/common.js" defer></script>
+  <script src="/assets/home.js" defer></script>
+</body>
+</html>

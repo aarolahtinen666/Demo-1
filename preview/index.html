@@ -1,0 +1,1904 @@
+<title>Parturi Kuura</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#16302b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap">
+<style>
+:root { color-scheme: light; }
+/* Parturi Kuura – yhteinen tyylitiedosto */
+:root {
+  --frost: #e6edef;
+  --snow: #fbfcfc;
+  --pine: #16302b;
+  --pine-2: #24443d;
+  --lichen: #5f7a70;
+  --line: #c9d5d6;
+  --red: #c4302a;
+  --red-dark: #9f241f;
+  --ok: #2f6b4f;
+  --radius-s: 6px;
+  --radius-l: 18px;
+  --wrap: 1120px;
+  --font: "Bricolage Grotesque", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--pine);
+  background: var(--frost);
+  font-variation-settings: "wdth" 100;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; border-radius: 4px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+h1, h2, h3 { line-height: 1.08; margin: 0 0 .5em; font-weight: 700; letter-spacing: -.02em; }
+h1 { font-size: clamp(2.4rem, 7.5vw, 4.6rem); font-variation-settings: "wdth" 80; letter-spacing: -.035em; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); font-variation-settings: "wdth" 85; }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 1em; max-width: 62ch; }
+.muted { color: var(--lichen); }
+
+/* Demo-ilmoitus */
+.demo-strip { background: var(--pine); color: var(--frost); font-size: .85rem; text-align: center; padding: 6px 16px; }
+
+/* Yläpalkki */
+.site-header { background: var(--snow); border-bottom: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--snow); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 1.25rem; font-variation-settings: "wdth" 75; letter-spacing: -.02em; }
+.logo svg { width: 28px; height: 28px; }
+.nav { display: flex; align-items: center; gap: 4px; }
+.nav a { text-decoration: none; padding: 8px 12px; border-radius: var(--radius-s); font-weight: 500; }
+.nav a:hover { background: var(--frost); }
+.nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.nav .btn { margin-left: 6px; }
+.menu-btn { display: none; background: none; border: 1px solid var(--line); border-radius: var(--radius-s); padding: 8px 12px; font: inherit; font-weight: 600; color: var(--pine); }
+
+@media (max-width: 760px) {
+  .menu-btn { display: block; }
+  .nav { position: absolute; left: 0; right: 0; top: 100%; background: var(--snow); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); display: none; }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; }
+  .nav .btn { margin: 8px 0 0; text-align: center; }
+}
+
+/* Napit */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: inherit; font-weight: 650; font-size: 1rem; line-height: 1;
+  padding: 14px 22px; border-radius: 999px; border: 2px solid transparent;
+  background: var(--red); color: #fff; text-decoration: none; cursor: pointer;
+  transition: background .15s;
+}
+.btn:hover { background: var(--red-dark); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.nav a.btn, .nav a.btn:hover { color: #fff; background: var(--red); }
+.nav a.btn:hover { background: var(--red-dark); }
+.btn-ghost { background: transparent; color: var(--pine); border-color: var(--pine); }
+.btn-ghost:hover { background: var(--pine); color: var(--snow); }
+.btn-small { padding: 9px 14px; font-size: .92rem; }
+.btn-quiet { background: transparent; color: var(--pine); border-color: var(--line); }
+.btn-quiet:hover { background: var(--pine); border-color: var(--pine); color: var(--snow); }
+.btn-danger { background: transparent; color: var(--red); border-color: var(--red); }
+.btn-danger:hover { background: var(--red); color: #fff; }
+
+/* Etusivun hero */
+.hero { padding: 56px 0 64px; }
+.hero .wrap { display: grid; gap: 40px; align-items: end; }
+@media (min-width: 900px) { .hero .wrap { grid-template-columns: 1.25fr 1fr; } }
+.hero h1 { margin-bottom: .35em; }
+.hero-lead { font-size: 1.2rem; max-width: 34ch; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+.next-slots { background: var(--pine); color: var(--frost); border-radius: var(--radius-l); padding: 24px; }
+.next-slots h2 { font-size: 1.35rem; margin-bottom: 4px; font-variation-settings: "wdth" 100; letter-spacing: -.01em; }
+.next-slots .day-label { color: #a9c0b8; margin-bottom: 16px; font-size: .95rem; }
+.slot-chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+.slot-chips a {
+  display: block; text-align: center; text-decoration: none; font-weight: 650; font-variant-numeric: tabular-nums;
+  padding: 12px 6px; border-radius: var(--radius-s); background: var(--pine-2); color: var(--snow); border: 1px solid #3c5d55;
+}
+.slot-chips a:hover { background: var(--red); border-color: var(--red); }
+.next-slots .more { display: inline-block; margin-top: 16px; color: var(--snow); font-weight: 600; }
+.next-slots .empty { color: #a9c0b8; }
+
+/* Hinnasto (taulumainen lista) */
+.section { padding: 56px 0; }
+.section-alt { background: var(--snow); }
+.price-list { list-style: none; margin: 0; padding: 0; max-width: 720px; }
+.price-list li { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.price-list li:first-child { border-top: 1px solid var(--line); }
+.price-list .name { font-weight: 650; font-size: 1.1rem; }
+.price-list .price { font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+.price-list .desc { grid-column: 1 / -1; color: var(--lichen); font-size: .97rem; }
+.price-list .dur { color: var(--lichen); font-weight: 400; }
+
+.two-col { display: grid; gap: 40px; }
+@media (min-width: 800px) { .two-col { grid-template-columns: 1fr 1fr; } }
+
+.hours { width: 100%; max-width: 420px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.hours td { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.hours td:last-child { text-align: right; font-weight: 600; }
+.hours tr.today td { color: var(--red); }
+
+.site-footer { background: var(--pine); color: #c5d4cf; padding: 40px 0 32px; margin-top: 0; font-size: .95rem; }
+.site-footer .wrap { display: grid; gap: 24px; }
+@media (min-width: 760px) { .site-footer .wrap { grid-template-columns: 2fr 1fr 1fr; } }
+.site-footer strong { color: var(--snow); display: block; margin-bottom: 6px; }
+.site-footer a { color: #c5d4cf; }
+.site-footer p { margin: 0 0 4px; }
+
+/* Sivujen otsikkoalue */
+.page-head { padding: 48px 0 24px; }
+.page-head h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); }
+
+/* Varaus */
+.booking { padding-bottom: 64px; }
+.steps { list-style: none; padding: 0; margin: 0 0 28px; display: flex; gap: 6px; flex-wrap: wrap; counter-reset: step; }
+.steps li { counter-increment: step; display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; background: var(--snow); border: 1px solid var(--line); font-size: .92rem; color: var(--lichen); }
+.steps li::before { content: counter(step); display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--frost); font-weight: 700; font-size: .8rem; }
+.steps li.active { color: var(--pine); border-color: var(--pine); font-weight: 600; }
+.steps li.active::before { background: var(--pine); color: var(--snow); }
+.steps li.done::before { content: "✓"; background: var(--ok); color: #fff; }
+
+.panel { background: var(--snow); border: 1px solid var(--line); border-radius: var(--radius-l); padding: 24px; margin-bottom: 20px; }
+@media (max-width: 520px) { .panel { padding: 18px 16px; } }
+.panel h2 { font-size: 1.4rem; font-variation-settings: "wdth" 100; letter-spacing: -.01em; }
+
+.service-options { display: grid; gap: 8px; }
+.service-option { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 14px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-s); cursor: pointer; background: var(--snow); }
+.service-option:hover { border-color: var(--pine); }
+.service-option input { accent-color: var(--red); width: 20px; height: 20px; margin: 0; }
+.service-option .name { font-weight: 650; }
+.service-option .meta { color: var(--lichen); font-size: .92rem; grid-column: 2; }
+.service-option .price { font-weight: 700; grid-row: 1 / span 2; grid-column: 3; font-variant-numeric: tabular-nums; }
+.service-option:has(input:checked) { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+
+.day-strip { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 12px; scroll-snap-type: x proximity; margin: 0 -2px; }
+.day-strip button {
+  flex: 0 0 auto; width: 68px; scroll-snap-align: start; font: inherit; cursor: pointer;
+  padding: 10px 4px; border-radius: var(--radius-s); border: 1px solid var(--line); background: var(--snow); color: var(--pine);
+  display: grid; gap: 2px; text-align: center;
+}
+.day-strip .wd { font-size: .8rem; color: var(--lichen); }
+.day-strip .d { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.day-strip .m { font-size: .75rem; color: var(--lichen); }
+.day-strip button:disabled { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
+.day-strip button[aria-pressed="true"] { background: var(--pine); color: var(--snow); border-color: var(--pine); }
+.day-strip button[aria-pressed="true"] .wd, .day-strip button[aria-pressed="true"] .m { color: #a9c0b8; }
+
+.slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 8px; margin-top: 8px; }
+.slot-grid button { font: inherit; font-weight: 650; font-variant-numeric: tabular-nums; padding: 12px 4px; border-radius: var(--radius-s); border: 1px solid var(--line); background: var(--snow); color: var(--pine); cursor: pointer; }
+.slot-grid button:hover { border-color: var(--pine); }
+.slot-grid button[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
+.slot-note { color: var(--lichen); margin: 8px 0 0; }
+
+.form-grid { display: grid; gap: 16px; }
+@media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } .form-grid .full { grid-column: 1 / -1; } }
+label.field { display: grid; gap: 6px; font-weight: 600; font-size: .95rem; }
+.field input, .field textarea, .field select {
+  font: inherit; font-weight: 400; color: var(--pine); padding: 12px 14px; border-radius: var(--radius-s);
+  border: 1px solid #a9bbbb; background: #fff; width: 100%;
+}
+.field input:focus, .field textarea:focus, .field select:focus { outline: 2px solid var(--pine); outline-offset: 0; border-color: var(--pine); }
+.field .hint { font-weight: 400; color: var(--lichen); font-size: .88rem; }
+.hp { position: absolute; left: -9999px; }
+
+.summary { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0 0 18px; font-variant-numeric: tabular-nums; }
+.summary dt { color: var(--lichen); }
+.summary dd { margin: 0; font-weight: 650; }
+
+.notice { padding: 14px 16px; border-radius: var(--radius-s); margin: 12px 0; border: 1px solid; }
+.notice.error { background: #fbeceb; border-color: #e9b4b1; color: #7d1d19; }
+.notice.ok { background: #e8f2ec; border-color: #b4d3c2; color: #1f4b36; }
+.notice.info { background: var(--frost); border-color: var(--line); }
+.notice[hidden] { display: none; }
+
+.confirm-head { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
+.confirm-head .tick { width: 44px; height: 44px; border-radius: 50%; background: var(--ok); color: #fff; display: grid; place-items: center; font-size: 1.4rem; flex: 0 0 auto; }
+.confirm-head h2 { margin: 0; }
+
+.email-preview { margin-top: 20px; border: 1px dashed var(--lichen); border-radius: var(--radius-l); overflow: hidden; background: #fff; }
+.email-preview .bar { padding: 10px 14px; font-size: .88rem; background: var(--frost); color: var(--pine); border-bottom: 1px dashed var(--lichen); }
+.email-preview iframe { width: 100%; height: 640px; border: 0; display: block; }
+
+.spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: -3px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+.prose h2 { margin-top: 1.4em; font-size: 1.35rem; }
+.prose ul { padding-left: 1.2em; max-width: 62ch; }
+
+/* Hallinta */
+.admin-bar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.tabs { display: flex; gap: 2px; flex-wrap: nowrap; overflow-x: auto; max-width: 100%; background: var(--snow); border: 1px solid var(--line); border-radius: 999px; padding: 4px; }
+.tabs button { flex: 0 0 auto; font: inherit; font-weight: 600; border: 0; background: none; color: var(--pine); padding: 9px 14px; border-radius: 999px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--pine); color: var(--snow); }
+.week-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 16px; font-variant-numeric: tabular-nums; }
+label.check { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; }
+label.check input { width: 18px; height: 18px; accent-color: var(--pine); }
+.admin-day { background: var(--snow); border: 1px solid var(--line); border-radius: var(--radius-l); padding: 16px 18px; margin-bottom: 12px; }
+.admin-day.is-today { border-color: var(--pine); box-shadow: inset 4px 0 0 var(--red); }
+.admin-day h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.empty-day { margin: 0; font-size: .95rem; }
+.booking-row { display: grid; grid-template-columns: 56px 1fr; gap: 4px 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+.booking-row .when { font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.booking-row .when span { display: block; font-weight: 400; color: var(--lichen); font-size: .88rem; }
+.booking-row .contact { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .95rem; margin-top: 2px; }
+.booking-row .note { margin: 6px 0 0; font-size: .95rem; background: var(--frost); padding: 6px 10px; border-radius: var(--radius-s); }
+.booking-row .actions { grid-column: 2; display: flex; gap: 8px; margin-top: 8px; }
+@media (min-width: 720px) { .booking-row { grid-template-columns: 64px 1fr auto; } .booking-row .actions { grid-column: 3; grid-row: 1; margin-top: 0; align-self: start; } }
+.booking-row.is-cancelled { opacity: .6; }
+.booking-row.is-cancelled strong { text-decoration: line-through; }
+.booking-row.is-block .who strong { color: var(--lichen); }
+.badge { display: inline-block; font-size: .78rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--frost); border: 1px solid var(--line); margin-left: 4px; vertical-align: 2px; }
+.small { font-size: .88rem; margin: 4px 0 0; }
+.move-box { margin-top: 10px; padding: 12px; background: var(--frost); border-radius: var(--radius-s); }
+.move-box .field { max-width: 220px; }
+.move-box .slot-grid button { padding: 9px 4px; }
+.hours-edit { display: grid; gap: 8px; }
+.hours-row { display: grid; grid-template-columns: 150px 1fr auto 1fr; gap: 8px; align-items: center; max-width: 520px; }
+.hours-row input[type="time"] { font: inherit; padding: 8px 10px; border-radius: var(--radius-s); border: 1px solid #a9bbbb; background: #fff; color: var(--pine); min-width: 0; }
+.hours-row input:disabled { opacity: .4; }
+@media (max-width: 480px) { .hours-row { grid-template-columns: 1fr auto 1fr; padding-bottom: 6px; } .hours-row .check { grid-column: 1 / -1; } }
+.closed-add { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.closed-add input { font: inherit; padding: 8px 10px; border-radius: var(--radius-s); border: 1px solid #a9bbbb; }
+.closed-list { list-style: none; padding: 0; margin: 0; max-width: 480px; }
+.closed-list li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.service-edit { border: 1px solid var(--line); border-radius: var(--radius-s); padding: 14px; margin: 0 0 10px; display: grid; gap: 10px; grid-template-columns: 1fr 1fr; align-items: end; }
+.service-edit .field:first-of-type, .service-edit .wide { grid-column: 1 / -1; }
+@media (min-width: 760px) { .service-edit { grid-template-columns: 2fr 1fr 1fr 3fr auto; } .service-edit .field:first-of-type, .service-edit .wide { grid-column: auto; } }
+
+.demo-strip { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: center; align-items: center; }
+.demo-strip button { font: inherit; font-size: .85rem; color: var(--frost); background: none; border: 1px solid #4b6b63; border-radius: 999px; padding: 2px 10px; cursor: pointer; }
+.k-dialog { position: fixed; inset: 0; z-index: 50; background: rgba(22, 48, 43, .55); display: grid; place-items: center; padding: 16px; }
+.k-dialog-box { background: var(--snow); color: var(--pine); border-radius: var(--radius-l); padding: 22px; max-width: 380px; width: 100%; }
+.k-dialog-box p { margin: 0 0 18px; font-weight: 600; font-size: 1.05rem; }
+.k-dialog-box div { display: flex; gap: 10px; flex-wrap: wrap; }
+</style>
+<div class="demo-strip"><span>Esikatselu: Parturi Kuura on kuvitteellinen yritys. Varaukset tallentuvat vain tähän selaimeen.</span><button type="button" data-reset>Tyhjennä demovaraukset</button></div>
+<header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+<path d="M16 3v26M4.7 9.5l22.6 13M4.7 22.5l22.6-13"/><path d="M12.5 5.5 16 9l3.5-3.5M12.5 26.5 16 23l3.5 3.5M5 14l4.8-1.2L8.5 8M27 18l-4.8 1.2 1.3 4.8M5 18l4.8 1.2L8.5 24M27 14l-4.8-1.2L23.5 8"/></svg>Parturi Kuura</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav">Valikko</button>
+      <nav class="nav" id="nav" aria-label="Päävalikko">
+        <a href="/" aria-current="page">Etusivu</a>
+        <a href="/palvelut">Palvelut ja hinnat</a>
+        <a href="/yhteystiedot">Yhteystiedot</a>
+        <a class="btn btn-small" href="/varaa">Varaa aika</a>
+      </nav>
+    </div>
+  </header>
+<main id="main"></main>
+<footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <strong>Parturi Kuura</strong>
+        <p>Esimerkkikatu 5, 40100 Jyväskylä</p>
+        <p><a href="tel:0400000000">040 000 0000</a><br><a href="mailto:hello@parturikuura.example">hello@parturikuura.example</a></p>
+      </div>
+      <div>
+        <strong>Asiointi</strong>
+        <p><a href="/varaa">Varaa aika</a></p>
+        <p><a href="/palvelut">Hinnasto</a></p>
+      </div>
+      <div>
+        <strong>Muuta</strong>
+        <p><a href="/tietosuoja">Tietosuojaseloste</a></p>
+        <p><a href="/hallinta">Yrittäjälle</a></p>
+      </div>
+    </div>
+  </footer>
+<script>
+
+const process = { env: {} };
+const randomUUID = () => (crypto.randomUUID ? crypto.randomUUID() : ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)));
+const randomBytes = (n) => { const a = crypto.getRandomValues(new Uint8Array(n)); return { toString: () => btoa(String.fromCharCode(...a)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "") }; };
+// Kaikki ajat käsitellään Suomen aikana (Europe/Helsinki) merkkijonoina
+// "YYYY-MM-DD" ja "HH:MM", jotta palvelimen UTC-aika ei sekoita mitään.
+
+const TZ = "Europe/Helsinki";
+
+function helsinkiNow(date = new Date()) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-CA", {
+      timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+    }).formatToParts(date).map((p) => [p.type, p.value]),
+  );
+  return { date: `${parts.year}-${parts.month}-${parts.day}`, minutes: Number(parts.hour) * 60 + Number(parts.minute) };
+}
+
+const toMinutes = (hhmm) => {
+  const [h, m] = hhmm.split(":").map(Number);
+  return h * 60 + m;
+};
+
+const fromMinutes = (min) =>
+  `${String(Math.floor(min / 60)).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
+
+function isValidDate(str) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(str)) return false;
+  const [y, m, d] = str.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  return dt.getUTCFullYear() === y && dt.getUTCMonth() === m - 1 && dt.getUTCDate() === d;
+}
+
+function weekday(str) {
+  const [y, m, d] = str.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+}
+
+function addDays(str, n) {
+  const [y, m, d] = str.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d + n));
+  return dt.toISOString().slice(0, 10);
+}
+
+function daysBetween(a, b) {
+  const [y1, m1, d1] = a.split("-").map(Number);
+  const [y2, m2, d2] = b.split("-").map(Number);
+  return Math.round((Date.UTC(y2, m2 - 1, d2) - Date.UTC(y1, m1 - 1, d1)) / 86400000);
+}
+
+// "Lauantai 24.10.2026"
+function formatDateFi(str) {
+  const days = ["sunnuntai", "maanantai", "tiistai", "keskiviikko", "torstai", "perjantai", "lauantai"];
+  const [y, m, d] = str.split("-").map(Number);
+  const name = days[weekday(str)];
+  return `${name[0].toUpperCase()}${name.slice(1)} ${d}.${m}.${y}`;
+}
+
+// Oletusasetukset. Yrittäjä voi muuttaa näitä hallintanäkymästä,
+// jolloin muutokset tallentuvat Blobs-varastoon avaimella "settings".
+
+const DEFAULT_SETTINGS = {
+  business: {
+    name: "Parturi Kuura",
+    address: "Esimerkkikatu 5, 40100 Jyväskylä",
+    phone: "040 000 0000",
+    email: "hello@parturikuura.example",
+  },
+  slotMinutes: 30,
+  minNoticeMinutes: 60, // varaus vähintään tunnin päähän
+  maxDaysAhead: 60,
+  cancelCutoffHours: 2, // asiakas voi perua itse viimeistään 2 h ennen
+  // Viikonpäivät: 0 = sunnuntai ... 6 = lauantai. null = suljettu.
+  hours: {
+    0: null,
+    1: { open: "09:00", close: "17:00" },
+    2: { open: "09:00", close: "17:00" },
+    3: { open: "09:00", close: "18:00" },
+    4: { open: "09:00", close: "17:00" },
+    5: { open: "09:00", close: "16:00" },
+    6: { open: "10:00", close: "14:00" },
+  },
+  closedDates: ["2026-12-24", "2026-12-25", "2026-12-26", "2027-01-01"],
+  services: [
+    { id: "leikkaus", name: "Hiustenleikkaus", duration: 30, price: 32, desc: "Pesu, leikkaus ja muotoilu." },
+    { id: "parta", name: "Parran muotoilu", duration: 30, price: 25, desc: "Siistiminen, linjat ja kuuma pyyhe." },
+    { id: "combo", name: "Leikkaus + parta", duration: 60, price: 52, desc: "Koko paketti kerralla." },
+    { id: "lapset", name: "Lasten leikkaus", duration: 30, price: 22, desc: "Alle 12-vuotiaille." },
+    { id: "varjays", name: "Värjäys", duration: 90, price: 85, desc: "Sävytys tai värjäys, sis. leikkauksen." },
+  ],
+};
+
+const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+// Tarkistaa hallinnasta tulevat asetukset. Palauttaa siistityn kopion tai heittää virheen.
+function validateSettings(input) {
+  const s = structuredClone(DEFAULT_SETTINGS);
+  if (typeof input !== "object" || !input) throw new Error("Asetukset puuttuvat");
+
+  if (input.business) {
+    for (const k of ["name", "address", "phone", "email"]) {
+      if (typeof input.business[k] === "string") s.business[k] = input.business[k].slice(0, 120).trim();
+    }
+  }
+  for (const [k, min, max] of [["minNoticeMinutes", 0, 2880], ["maxDaysAhead", 1, 365], ["cancelCutoffHours", 0, 168]]) {
+    if (input[k] !== undefined) {
+      const n = Number(input[k]);
+      if (!Number.isInteger(n) || n < min || n > max) throw new Error(`Virheellinen arvo: ${k}`);
+      s[k] = n;
+    }
+  }
+  if (input.hours) {
+    for (let d = 0; d <= 6; d++) {
+      const h = input.hours[d];
+      if (h === null || h === undefined || h === false) { s.hours[d] = null; continue; }
+      if (!TIME_RE.test(h.open) || !TIME_RE.test(h.close) || h.open >= h.close) {
+        throw new Error("Tarkista aukioloajat (muoto HH:MM, avaus ennen sulkemista)");
+      }
+      s.hours[d] = { open: h.open, close: h.close };
+    }
+  }
+  if (Array.isArray(input.closedDates)) {
+    s.closedDates = [...new Set(input.closedDates.filter((d) => DATE_RE.test(d)))].sort().slice(0, 400);
+  }
+  if (Array.isArray(input.services)) {
+    if (input.services.length === 0) throw new Error("Lisää vähintään yksi palvelu");
+    const ids = new Set();
+    s.services = input.services.slice(0, 30).map((sv, i) => {
+      const name = String(sv.name || "").trim().slice(0, 60);
+      const duration = Number(sv.duration);
+      const price = Number(sv.price);
+      if (!name) throw new Error(`Palvelulta ${i + 1} puuttuu nimi`);
+      if (!Number.isInteger(duration) || duration < 15 || duration > 480 || duration % 15) {
+        throw new Error(`Palvelun "${name}" kesto pitää olla 15–480 min (15 min välein)`);
+      }
+      if (!Number.isFinite(price) || price < 0 || price > 10000) throw new Error(`Palvelun "${name}" hinta on virheellinen`);
+      let id = String(sv.id || "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 30);
+      if (!id) id = name.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 30) || `palvelu-${i + 1}`;
+      while (ids.has(id)) id += "-2";
+      ids.add(id);
+      return { id, name, duration, price, desc: String(sv.desc || "").trim().slice(0, 160) };
+    });
+  }
+  return s;
+}
+
+// Julkinen osa asetuksista (näytetään varaussivulla).
+function publicSettings(s) {
+  return {
+    business: s.business,
+    slotMinutes: s.slotMinutes,
+    minNoticeMinutes: s.minNoticeMinutes,
+    maxDaysAhead: s.maxDaysAhead,
+    cancelCutoffHours: s.cancelCutoffHours,
+    hours: s.hours,
+    closedDates: s.closedDates,
+    services: s.services,
+  };
+}
+
+// Tallennus: muisti + localStorage (vain tässä selaimessa)
+const LS_KEY = "kuura-demo-store-v1";
+const mem = new Map();
+try { const raw = localStorage.getItem(LS_KEY); if (raw) for (const [k, v] of JSON.parse(raw)) mem.set(k, v); } catch {}
+const persist = () => { try { localStorage.setItem(LS_KEY, JSON.stringify([...mem])); } catch {} };
+const tick = () => new Promise((r) => setTimeout(r, 0));
+const memStore = {
+  async get(key, o = {}) { await tick(); if (!mem.has(key)) return null; const v = mem.get(key); return o.type === "json" ? JSON.parse(v) : v; },
+  async setJSON(key, value, o = {}) { await tick(); if (o.onlyIfNew && mem.has(key)) return { modified: false }; mem.set(key, JSON.stringify(value)); persist(); return { modified: true }; },
+  async delete(key) { await tick(); mem.delete(key); persist(); },
+  async list(o = {}) { await tick(); const p = o.prefix || ""; return { blobs: [...mem.keys()].filter((k) => k.startsWith(p)).sort().map((key) => ({ key })) }; },
+};
+const db = () => memStore;
+
+
+
+
+class HttpError extends Error {
+  constructor(status, message) {
+    super(message);
+    this.status = status;
+  }
+}
+
+// ---------- Asetukset ----------
+
+async function getSettings() {
+  const saved = await db().get("settings", { type: "json" });
+  if (!saved) return structuredClone(DEFAULT_SETTINGS);
+  return { ...structuredClone(DEFAULT_SETTINGS), ...saved };
+}
+
+async function saveSettings(input) {
+  let clean;
+  try {
+    clean = validateSettings(input);
+  } catch (e) {
+    throw new HttpError(400, e.message);
+  }
+  await db().setJSON("settings", clean);
+  return clean;
+}
+
+// ---------- Vapaat ajat ----------
+
+function blocksNeeded(settings, duration) {
+  return Math.ceil(duration / settings.slotMinutes);
+}
+
+function slotTimesFor(settings, start, duration) {
+  const n = blocksNeeded(settings, duration);
+  return Array.from({ length: n }, (_, i) => fromMinutes(toMinutes(start) + i * settings.slotMinutes));
+}
+
+// Hakee päivän varatut jaksot: Map<"HH:MM", { type, id }>
+async function occupiedSlots(date) {
+  const { blobs } = await db().list({ prefix: `slots/${date}/` });
+  const map = new Map();
+  await Promise.all(
+    blobs.map(async (b) => {
+      const v = await db().get(b.key, { type: "json" });
+      if (v) map.set(b.key.split("/").pop(), v);
+    }),
+  );
+  return map;
+}
+
+// Syy, miksi päivä ei ole varattavissa, tai null.
+function dayClosedReason(settings, date, now = helsinkiNow()) {
+  if (!isValidDate(date)) return "Virheellinen päivämäärä";
+  const diff = daysBetween(now.date, date);
+  if (diff < 0) return "Päivä on mennyt";
+  if (diff > settings.maxDaysAhead) return `Varauksia voi tehdä ${settings.maxDaysAhead} päivän päähän`;
+  if (settings.closedDates.includes(date)) return "Suljettu";
+  if (!settings.hours[weekday(date)]) return "Suljettu";
+  return null;
+}
+
+async function availableSlots(settings, date, serviceId, { ignoreBookingId, now = helsinkiNow() } = {}) {
+  const service = settings.services.find((s) => s.id === serviceId);
+  if (!service) throw new HttpError(400, "Tuntematon palvelu");
+  const closed = dayClosedReason(settings, date, now);
+  if (closed) return { closed, slots: [] };
+
+  const hours = settings.hours[weekday(date)];
+  const open = toMinutes(hours.open);
+  const close = toMinutes(hours.close);
+  const step = settings.slotMinutes;
+  const length = blocksNeeded(settings, service.duration) * step;
+  const occupied = await occupiedSlots(date);
+  const isFree = (t) => {
+    const v = occupied.get(t);
+    return !v || (ignoreBookingId && v.type === "booking" && v.id === ignoreBookingId);
+  };
+  const dayOffset = daysBetween(now.date, date) * 1440;
+
+  const slots = [];
+  for (let start = open; start + length <= close; start += step) {
+    if (dayOffset + start - now.minutes < settings.minNoticeMinutes) continue;
+    const times = slotTimesFor(settings, fromMinutes(start), service.duration);
+    if (times.every(isFree)) slots.push(fromMinutes(start));
+  }
+  return { closed: null, slots, service };
+}
+
+// ---------- Lukitus (estää tuplavaraukset) ----------
+
+// Lukitsee jaksot atomisesti. Jos jokin on jo varattu, vapauttaa omat ja heittää 409.
+async function lockSlots(date, times, value, { reuseForId } = {}) {
+  const acquired = [];
+  for (const t of times) {
+    const key = `slots/${date}/${t}`;
+    const { modified } = await db().setJSON(key, value, { onlyIfNew: true });
+    if (modified) {
+      acquired.push(key);
+      continue;
+    }
+    if (reuseForId) {
+      const existing = await db().get(key, { type: "json" });
+      if (existing && existing.type === value.type && existing.id === reuseForId) continue;
+    }
+    await Promise.all(acquired.map((k) => db().delete(k)));
+    throw new HttpError(409, "Valitettavasti aika ehdittiin juuri varata. Valitse toinen aika.");
+  }
+}
+
+async function releaseSlots(date, times, ownerId) {
+  await Promise.all(
+    times.map(async (t) => {
+      const key = `slots/${date}/${t}`;
+      const v = await db().get(key, { type: "json" });
+      if (v && v.id === ownerId) await db().delete(key);
+    }),
+  );
+}
+
+// ---------- Varaukset ----------
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function validateCustomer(input) {
+  const name = String(input.name || "").trim();
+  const email = String(input.email || "").trim().toLowerCase();
+  const phone = String(input.phone || "").trim();
+  const note = String(input.note || "").trim();
+  if (name.length < 2 || name.length > 80) throw new HttpError(400, "Kirjoita nimesi (2–80 merkkiä)");
+  if (!EMAIL_RE.test(email) || email.length > 120) throw new HttpError(400, "Tarkista sähköpostiosoite");
+  if (!/^\+?[0-9 ()-]{5,20}$/.test(phone)) throw new HttpError(400, "Tarkista puhelinnumero");
+  if (note.length > 500) throw new HttpError(400, "Lisätieto on liian pitkä (max 500 merkkiä)");
+  return { name, email, phone, note };
+}
+
+async function createBooking(input) {
+  if (input.website) throw new HttpError(400, "Varaus hylättiin"); // roskapostiansa
+  const settings = await getSettings();
+  const { date, time, serviceId } = input;
+  const customer = validateCustomer(input);
+
+  const { closed, slots, service } = await availableSlots(settings, date, serviceId);
+  if (closed) throw new HttpError(400, closed);
+  if (!slots.includes(time)) throw new HttpError(409, "Valittu aika ei ole enää vapaana. Valitse toinen aika.");
+
+  const id = randomUUID().slice(0, 8);
+  const token = randomBytes(18).toString("base64url");
+  const times = slotTimesFor(settings, time, service.duration);
+  const booking = {
+    id, token, date, time,
+    end: fromMinutes(toMinutes(time) + service.duration),
+    serviceId: service.id, serviceName: service.name, duration: service.duration, price: service.price,
+    ...customer,
+    status: "pending",
+    createdAt: new Date().toISOString(),
+  };
+
+  // Ensin varaus "pending"-tilassa, sitten lukot. Jos jotain kaatuu välissä,
+  // jäänne näkyy hallinnassa eikä jää näkymättömäksi tukokseksi.
+  await db().setJSON(`bookings/${date}/${id}`, booking);
+  try {
+    await lockSlots(date, times, { type: "booking", id });
+  } catch (e) {
+    await db().delete(`bookings/${date}/${id}`);
+    throw e;
+  }
+  booking.status = "confirmed";
+  await db().setJSON(`bookings/${date}/${id}`, booking);
+  await db().setJSON(`tokens/${token}`, { date, id });
+  return { booking, settings };
+}
+
+async function getBooking(date, id) {
+  if (!isValidDate(date) || !/^[a-z0-9-]{1,40}$/i.test(id)) return null;
+  return db().get(`bookings/${date}/${id}`, { type: "json" });
+}
+
+async function getBookingByToken(token) {
+  if (!/^[A-Za-z0-9_-]{10,64}$/.test(token || "")) return null;
+  const ref = await db().get(`tokens/${token}`, { type: "json" });
+  if (!ref) return null;
+  const booking = await getBooking(ref.date, ref.id);
+  return booking && booking.token === token ? booking : null;
+}
+
+function canCustomerCancel(settings, booking, now = helsinkiNow()) {
+  if (booking.status !== "confirmed") return false;
+  const minutesUntil = daysBetween(now.date, booking.date) * 1440 + toMinutes(booking.time) - now.minutes;
+  return minutesUntil >= settings.cancelCutoffHours * 60;
+}
+
+async function cancelBooking(booking, by) {
+  if (booking.status === "cancelled") return booking;
+  const settings = await getSettings();
+  booking.status = "cancelled";
+  booking.cancelledAt = new Date().toISOString();
+  booking.cancelledBy = by;
+  await db().setJSON(`bookings/${booking.date}/${booking.id}`, booking);
+  await releaseSlots(booking.date, slotTimesFor(settings, booking.time, booking.duration), booking.id);
+  return booking;
+}
+
+async function moveBooking(booking, newDate, newTime) {
+  if (booking.status !== "confirmed") throw new HttpError(400, "Vain voimassa olevan varauksen voi siirtää");
+  const settings = await getSettings();
+  const service = settings.services.find((s) => s.id === booking.serviceId) || {
+    id: booking.serviceId, duration: booking.duration,
+  };
+  // Siirto tarkistaa vapaat ajat samalla kestolla kuin alkuperäinen varaus.
+  const tmp = { ...settings, services: [{ ...service, id: "__move", duration: booking.duration }] };
+  const { closed, slots } = await availableSlots(tmp, newDate, "__move", { ignoreBookingId: booking.id, now: { date: helsinkiNow().date, minutes: -1e9 } });
+  if (closed && closed !== "Päivä on mennyt") throw new HttpError(400, `Uusi päivä: ${closed}`);
+  if (!slots.includes(newTime)) throw new HttpError(409, "Uusi aika ei ole vapaana");
+
+  const oldDate = booking.date;
+  const oldTimes = slotTimesFor(settings, booking.time, booking.duration);
+  const newTimes = slotTimesFor(settings, newTime, booking.duration);
+  await lockSlots(newDate, newTimes, { type: "booking", id: booking.id }, { reuseForId: newDate === oldDate ? booking.id : undefined });
+
+  const keep = newDate === oldDate ? new Set(newTimes) : new Set();
+  await releaseSlots(oldDate, oldTimes.filter((t) => !keep.has(t)), booking.id);
+
+  const moved = {
+    ...booking, date: newDate, time: newTime,
+    end: fromMinutes(toMinutes(newTime) + booking.duration),
+    movedFrom: { date: oldDate, time: booking.time }, movedAt: new Date().toISOString(),
+  };
+  await db().setJSON(`bookings/${newDate}/${booking.id}`, moved);
+  if (newDate !== oldDate) await db().delete(`bookings/${oldDate}/${booking.id}`);
+  await db().setJSON(`tokens/${booking.token}`, { date: newDate, id: booking.id });
+  return moved;
+}
+
+async function listBookings(from, to) {
+  if (!isValidDate(from) || !isValidDate(to) || daysBetween(from, to) < 0 || daysBetween(from, to) > 62) {
+    throw new HttpError(400, "Virheellinen aikaväli (max 62 päivää)");
+  }
+  const days = [];
+  for (let d = from; d <= to; d = addDays(d, 1)) days.push(d);
+  const read = async (prefix) => {
+    const { blobs } = await db().list({ prefix });
+    return Promise.all(blobs.map((b) => db().get(b.key, { type: "json" })));
+  };
+  const [bookings, blocks] = await Promise.all([
+    Promise.all(days.map((d) => read(`bookings/${d}/`))).then((r) => r.flat().filter(Boolean)),
+    Promise.all(days.map((d) => read(`blocks/${d}/`))).then((r) => r.flat().filter(Boolean)),
+  ]);
+  const sort = (a, b) => (a.date + (a.time || a.start)).localeCompare(b.date + (b.time || b.start));
+  return { bookings: bookings.sort(sort), blocks: blocks.sort(sort) };
+}
+
+// ---------- Yrittäjän sulkemat ajat ----------
+
+async function addBlock({ date, start, end, reason }) {
+  const settings = await getSettings();
+  if (!isValidDate(date)) throw new HttpError(400, "Virheellinen päivämäärä");
+  if (!/^\d{2}:\d{2}$/.test(start || "") || !/^\d{2}:\d{2}$/.test(end || "") || start >= end) {
+    throw new HttpError(400, "Tarkista alku- ja loppuaika");
+  }
+  const step = settings.slotMinutes;
+  const s = Math.floor(toMinutes(start) / step) * step;
+  const e = Math.ceil(toMinutes(end) / step) * step;
+  const times = [];
+  for (let t = s; t < e; t += step) times.push(fromMinutes(t));
+
+  const occupied = await occupiedSlots(date);
+  const clash = times.filter((t) => occupied.get(t)?.type === "booking");
+  if (clash.length) throw new HttpError(409, `Aikavälillä on varauksia (${clash.join(", ")}). Peru tai siirrä ne ensin.`);
+
+  const id = randomUUID().slice(0, 8);
+  const block = { id, date, start: fromMinutes(s), end: fromMinutes(e), reason: String(reason || "").slice(0, 80), createdAt: new Date().toISOString() };
+  // Jo valmiiksi suljetut jaksot ohitetaan, uudet lukitaan.
+  const free = times.filter((t) => !occupied.has(t));
+  await lockSlots(date, free, { type: "block", id });
+  block.slots = free;
+  await db().setJSON(`blocks/${date}/${id}`, block);
+  return block;
+}
+
+async function removeBlock(date, id) {
+  if (!isValidDate(date) || !/^[a-z0-9-]{1,40}$/i.test(id || "")) throw new HttpError(400, "Virheellinen tunniste");
+  const block = await db().get(`blocks/${date}/${id}`, { type: "json" });
+  if (!block) throw new HttpError(404, "Suljettua aikaa ei löytynyt");
+  await releaseSlots(date, block.slots || [], id);
+  await db().delete(`blocks/${date}/${id}`);
+  return block;
+}
+
+
+// Sähköpostit lähetetään Resendin kautta (https://resend.com), jos
+// ympäristömuuttujat RESEND_API_KEY ja EMAIL_FROM on asetettu Netlifyssä.
+// Ilman niitä sivu toimii demotilassa: viestiä ei lähetetä, vaan sen
+// sisältö palautetaan selaimelle esikatseltavaksi.
+
+const env = (k) => (globalThis.Netlify?.env?.get(k) ?? process.env[k] ?? "").trim();
+
+const emailConfigured = () => Boolean(env("RESEND_API_KEY") && env("EMAIL_FROM"));
+
+const esc = (s) =>
+  String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+function layout(business, title, rows, footerHtml = "") {
+  const rowHtml = rows
+    .map(([k, v]) => `<tr><td style="padding:6px 16px 6px 0;color:#5f7a70;white-space:nowrap">${esc(k)}</td><td style="padding:6px 0;color:#16302b"><strong>${esc(v)}</strong></td></tr>`)
+    .join("");
+  return `<!doctype html><html><body style="margin:0;background:#e6edef;font-family:Helvetica,Arial,sans-serif">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 16px">
+<table role="presentation" width="100%" style="max-width:520px;background:#fbfcfc;border-radius:14px;border:1px solid #c9d5d6">
+<tr><td style="padding:28px 28px 8px"><div style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c4302a">${esc(business.name)}</div>
+<h1 style="margin:10px 0 0;font-size:22px;color:#16302b">${esc(title)}</h1></td></tr>
+<tr><td style="padding:12px 28px"><table role="presentation" style="font-size:15px">${rowHtml}</table></td></tr>
+<tr><td style="padding:8px 28px 28px;font-size:14px;line-height:1.55;color:#24443d">${footerHtml}
+<p style="margin:18px 0 0;color:#5f7a70">${esc(business.name)} · ${esc(business.address)} · ${esc(business.phone)}</p></td></tr>
+</table></td></tr></table></body></html>`;
+}
+
+function detailRows(b) {
+  return [
+    ["Palvelu", b.serviceName],
+    ["Aika", `${formatDateFi(b.date)} klo ${b.time}–${b.end}`],
+    ["Hinta", `${b.price} €`],
+    ["Nimi", b.name],
+  ];
+}
+
+function confirmationEmail(business, b, cancelUrl, cutoffHours) {
+  const footer = `<p style="margin:0">Tervetuloa! Jos tulee este, voit perua ajan itse viimeistään ${cutoffHours} tuntia ennen:</p>
+<p style="margin:14px 0"><a href="${esc(cancelUrl)}" style="display:inline-block;background:#16302b;color:#fbfcfc;text-decoration:none;padding:11px 18px;border-radius:999px">Peru tai tarkista varaus</a></p>
+<p style="margin:0">Myöhemmin peruttaessa soita numeroon ${esc(business.phone)}.</p>`;
+  return {
+    to: b.email,
+    subject: `Varausvahvistus: ${b.serviceName} ${formatDateFi(b.date).toLowerCase()} klo ${b.time}`,
+    html: layout(business, "Varauksesi on vahvistettu", detailRows(b), footer),
+    text: `Varauksesi on vahvistettu.\n\n${b.serviceName}\n${formatDateFi(b.date)} klo ${b.time}–${b.end}\n${b.price} €\n\nPeru tai tarkista varaus: ${cancelUrl}\n\n${business.name}, ${business.address}, ${business.phone}`,
+  };
+}
+
+function ownerNotice(business, b, adminUrl) {
+  const rows = [...detailRows(b), ["Puhelin", b.phone], ["Sähköposti", b.email]];
+  if (b.note) rows.push(["Lisätieto", b.note]);
+  return {
+    to: env("OWNER_EMAIL") || business.email,
+    subject: `Uusi varaus: ${b.name}, ${b.date} klo ${b.time}`,
+    html: layout(business, "Uusi varaus", rows, `<p style="margin:0"><a href="${esc(adminUrl)}">Avaa hallinta</a></p>`),
+    text: `Uusi varaus\n${b.serviceName}\n${b.date} klo ${b.time}\n${b.name}, ${b.phone}, ${b.email}\n${b.note || ""}`,
+  };
+}
+
+function cancellationEmail(business, b, byOwner) {
+  const footer = byOwner
+    ? `<p style="margin:0">Pahoittelemme, joudumme perumaan tämän ajan. Varaa halutessasi uusi aika verkkosivuiltamme tai soita ${esc(business.phone)}.</p>`
+    : `<p style="margin:0">Peruutuksesi on kirjattu. Tervetuloa toiste!</p>`;
+  return {
+    to: b.email,
+    subject: `Varaus peruttu: ${b.serviceName} ${b.date} klo ${b.time}`,
+    html: layout(business, "Varaus on peruttu", detailRows(b), footer),
+    text: `Varaus on peruttu.\n${b.serviceName}\n${formatDateFi(b.date)} klo ${b.time}\n\n${business.name}, ${business.phone}`,
+  };
+}
+
+function movedEmail(business, b, cancelUrl) {
+  const footer = `<p style="margin:0">Aikasi on siirretty. Aiempi aika: ${esc(formatDateFi(b.movedFrom.date))} klo ${esc(b.movedFrom.time)}.</p>
+<p style="margin:14px 0"><a href="${esc(cancelUrl)}" style="display:inline-block;background:#16302b;color:#fbfcfc;text-decoration:none;padding:11px 18px;border-radius:999px">Tarkista varaus</a></p>`;
+  return {
+    to: b.email,
+    subject: `Aikasi on siirretty: ${b.date} klo ${b.time}`,
+    html: layout(business, "Uusi aika varauksellesi", detailRows(b), footer),
+    text: `Aikasi on siirretty.\nUusi aika: ${formatDateFi(b.date)} klo ${b.time}\n\nTarkista varaus: ${cancelUrl}`,
+  };
+}
+
+// Lähettää viestin. Palauttaa { sent: true } tai demotilassa { sent: false, preview }.
+async function sendEmail(msg) {
+  if (!emailConfigured()) return { sent: false, preview: { to: msg.to, subject: msg.subject, html: msg.html } };
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env("RESEND_API_KEY")}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: env("EMAIL_FROM"), to: [msg.to], subject: msg.subject, html: msg.html, text: msg.text }),
+    });
+    if (!res.ok) {
+      console.error("Sähköpostin lähetys epäonnistui", res.status, await res.text());
+      return { sent: false, error: true };
+    }
+    return { sent: true };
+  } catch (e) {
+    console.error("Sähköpostin lähetys epäonnistui", e);
+    return { sent: false, error: true };
+  }
+}
+
+
+const json = (data, status = 200) =>
+  new Response(JSON.stringify(data), {
+    status,
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
+  });
+
+async function readJson(req) {
+  try {
+    return await req.json();
+  } catch {
+    throw new HttpError(400, "Virheellinen pyyntö");
+  }
+}
+
+function handleError(e) {
+  if (e instanceof HttpError) return json({ error: e.message }, e.status);
+  console.error(e);
+  return json({ error: "Jotain meni pieleen. Yritä hetken päästä uudelleen." }, 500);
+}
+
+// Kirjautuminen esikatselussa: demosalasana
+const DEMO_PASSWORD = "kuura-demo";
+const isDemoMode = () => true;
+const checkPassword = (p) => p === DEMO_PASSWORD;
+const issueToken = () => "demo-session";
+const verifyRequest = (req) => req.headers.get("authorization") === "Bearer demo-session";
+// Julkinen varausrajapinta: /api/settings, /api/slots, /api/book, /api/booking, /api/cancel
+
+
+
+
+
+const publicBooking = (b, settings) => ({
+  date: b.date, time: b.time, end: b.end, serviceName: b.serviceName, price: b.price,
+  name: b.name, status: b.status, canCancel: canCustomerCancel(settings, b),
+  cancelCutoffHours: settings.cancelCutoffHours, phone: settings.business.phone,
+});
+
+const H_api = async (req) => {
+  const url = new URL(req.url);
+  const route = url.pathname.replace(/^\/api\//, "").replace(/\/$/, "");
+  try {
+    if (req.method === "GET" && route === "settings") {
+      const s = await getSettings();
+      return json({ ...publicSettings(s), demo: { email: !emailConfigured(), admin: isDemoMode() } });
+    }
+
+    if (req.method === "GET" && route === "slots") {
+      const s = await getSettings();
+      const { closed, slots } = await availableSlots(s, url.searchParams.get("date") || "", url.searchParams.get("service") || "");
+      return json({ closed, slots });
+    }
+
+    if (req.method === "POST" && route === "book") {
+      const body = await readJson(req);
+      const { booking, settings } = await createBooking(body);
+      const origin = url.origin;
+      const cancelUrl = `${origin}/peru?t=${booking.token}`;
+      const [customer] = await Promise.all([
+        sendEmail(confirmationEmail(settings.business, booking, cancelUrl, settings.cancelCutoffHours)),
+        sendEmail(ownerNotice(settings.business, booking, `${origin}/hallinta`)),
+      ]);
+      return json({
+        ok: true,
+        booking: publicBooking(booking, settings),
+        email: customer.sent ? "sent" : customer.error ? "failed" : "demo",
+        // Demotilassa näytetään, millaisen viestin asiakas saisi.
+        preview: customer.preview || null,
+        cancelUrl: customer.preview ? cancelUrl : null,
+      }, 201);
+    }
+
+    if (req.method === "GET" && route === "booking") {
+      const b = await getBookingByToken(url.searchParams.get("t"));
+      if (!b) throw new HttpError(404, "Varausta ei löytynyt. Tarkista linkki.");
+      return json(publicBooking(b, await getSettings()));
+    }
+
+    if (req.method === "POST" && route === "cancel") {
+      const { t } = await readJson(req);
+      const b = await getBookingByToken(t);
+      if (!b) throw new HttpError(404, "Varausta ei löytynyt. Tarkista linkki.");
+      const settings = await getSettings();
+      if (b.status === "cancelled") return json(publicBooking(b, settings));
+      if (!canCustomerCancel(settings, b)) {
+        throw new HttpError(400, `Aikaa ei voi enää perua verkossa. Soita ${settings.business.phone}.`);
+      }
+      const cancelled = await cancelBooking(b, "customer");
+      const mail = await sendEmail(cancellationEmail(settings.business, cancelled, false));
+      return json({ ...publicBooking(cancelled, settings), email: mail.sent ? "sent" : mail.error ? "failed" : "demo" });
+    }
+
+    return json({ error: "Ei löytynyt" }, 404);
+  } catch (e) {
+    return handleError(e);
+  }
+};
+
+
+// Yrittäjän hallinta-API, vaatii kirjautumisen (Authorization: Bearer <token>).
+
+
+
+
+
+const emailStatus = (r) => (r.sent ? "sent" : r.error ? "failed" : "demo");
+
+const H_admin = async (req) => {
+  const url = new URL(req.url);
+  const route = url.pathname.replace(/^\/api\/admin\//, "").replace(/\/$/, "");
+  try {
+    if (!verifyRequest(req)) return json({ error: "Kirjaudu uudelleen" }, 401);
+    const q = (k) => url.searchParams.get(k) || "";
+
+    if (req.method === "GET" && route === "bookings") {
+      return json(await listBookings(q("from"), q("to")));
+    }
+
+    if (req.method === "GET" && route === "slots") {
+      // Siirtoa varten: vapaat ajat varauksen kestolla, varauksen omat jaksot vapaina.
+      const settings = await getSettings();
+      const b = await getBooking(q("date"), q("id"));
+      if (!b) throw new HttpError(404, "Varausta ei löytynyt");
+      const tmp = { ...settings, services: [{ id: "__move", duration: b.duration }] };
+      const res = await availableSlots(tmp, q("newDate"), "__move", {
+        ignoreBookingId: b.id, now: { date: helsinkiNow().date, minutes: -1e9 },
+      });
+      return json({ closed: res.closed, slots: res.slots });
+    }
+
+    if (req.method === "POST" && route === "cancel") {
+      const { date, id, notify = true } = await readJson(req);
+      const b = await getBooking(date, id);
+      if (!b) throw new HttpError(404, "Varausta ei löytynyt");
+      const settings = await getSettings();
+      const cancelled = await cancelBooking(b, "owner");
+      const mail = notify ? await sendEmail(cancellationEmail(settings.business, cancelled, true)) : { sent: false };
+      return json({ booking: cancelled, email: notify ? emailStatus(mail) : "skipped" });
+    }
+
+    if (req.method === "POST" && route === "move") {
+      const { date, id, newDate, newTime } = await readJson(req);
+      const b = await getBooking(date, id);
+      if (!b) throw new HttpError(404, "Varausta ei löytynyt");
+      const settings = await getSettings();
+      const moved = await moveBooking(b, newDate, newTime);
+      const mail = await sendEmail(movedEmail(settings.business, moved, `${url.origin}/peru?t=${moved.token}`));
+      return json({ booking: moved, email: emailStatus(mail) });
+    }
+
+    if (req.method === "POST" && route === "block") {
+      return json({ block: await addBlock(await readJson(req)) }, 201);
+    }
+
+    if (req.method === "POST" && route === "unblock") {
+      const { date, id } = await readJson(req);
+      return json({ block: await removeBlock(date, id) });
+    }
+
+    if (req.method === "GET" && route === "settings") {
+      return json(await getSettings());
+    }
+
+    if (req.method === "PUT" && route === "settings") {
+      return json(await saveSettings(await readJson(req)));
+    }
+
+    return json({ error: "Ei löytynyt" }, 404);
+  } catch (e) {
+    return handleError(e);
+  }
+};
+
+
+// Hallinnan kirjautuminen: POST /api/admin-login { password } -> { token }
+
+
+const H_login = async (req) => {
+  try {
+    if (req.method !== "POST") return json({ error: "Väärä metodi" }, 405);
+    const { password } = await readJson(req);
+    if (!checkPassword(password || "")) {
+      await new Promise((r) => setTimeout(r, 600)); // hidastaa arvailua
+      return json({ error: "Väärä salasana" }, 401);
+    }
+    return json({ token: issueToken(), demo: isDemoMode() });
+  } catch (e) {
+    return handleError(e);
+  }
+};
+
+
+
+// Esimerkkivaraukset koko kuluvalle ja seuraavalle viikolle, jotta hallinnassa näkyy heti jotain.
+// Kirjoitetaan suoraan varastoon (myös menneille päiville), samalla rakenteella kuin oikea varaus.
+async function seed() {
+  if (mem.size) return;
+  const s = await getSettings();
+  const people = [
+    ["Mikko Laine", "040 111 2233", "mikko.laine@example.com", "leikkaus", ""],
+    ["Sanna Virtanen", "050 444 5566", "sanna.v@example.com", "varjays", "Vaaleampi sävy kuin viimeksi"],
+    ["Juha Korhonen", "044 777 8899", "juha.k@example.com", "combo", ""],
+    ["Eetu Mäkinen", "040 222 3344", "eetu.m@example.com", "lapset", "Ensimmäinen kerta"],
+    ["Tommi Heikkinen", "050 999 0011", "tommi.h@example.com", "parta", ""],
+    ["Laura Nieminen", "045 123 9876", "laura.n@example.com", "leikkaus", "Otsatukka lyhyemmäksi"],
+    ["Antti Salo", "040 555 6677", "antti.salo@example.com", "combo", ""],
+  ];
+  const times = ["09:30", "11:00", "13:30", "10:00", "15:00", "12:00", "14:00"];
+  const today = helsinkiNow().date;
+  let day = addDays(today, -((weekday(today) + 6) % 7)); // kuluvan viikon maanantai
+  let n = 0;
+  for (let i = 0; i < 12; i++, day = addDays(day, 1)) {
+    const h = s.hours[weekday(day)];
+    if (!h || s.closedDates.includes(day)) continue;
+    for (let k = 0; k < 2; k++, n++) {
+      const [name, phone, email, serviceId, note] = people[n % people.length];
+      const sv = s.services.find((x) => x.id === serviceId);
+      let time = times[n % times.length];
+      if (toMinutes(time) < toMinutes(h.open)) time = h.open;
+      if (toMinutes(time) + sv.duration > toMinutes(h.close)) time = fromMinutes(toMinutes(h.close) - Math.ceil(sv.duration / 30) * 30 - 30);
+      if (toMinutes(time) < toMinutes(h.open)) continue;
+      const id = randomUUID().slice(0, 8);
+      const token = randomBytes(18).toString();
+      try { await lockSlots(day, slotTimesFor(s, time, sv.duration), { type: "booking", id }); } catch { continue; }
+      await db().setJSON(`bookings/${day}/${id}`, {
+        id, token, date: day, time, end: fromMinutes(toMinutes(time) + sv.duration),
+        serviceId, serviceName: sv.name, duration: sv.duration, price: sv.price,
+        name, email, phone, note, status: "confirmed", createdAt: new Date().toISOString(),
+      });
+      await db().setJSON(`tokens/${token}`, { date: day, id });
+    }
+  }
+}
+const ready = seed();
+
+const FAKE = "https://parturikuura.example";
+const realFetch = window.fetch.bind(window);
+window.fetch = async (input, init = {}) => {
+  const url = new URL(typeof input === "string" ? input : input.url, FAKE);
+  if (url.origin !== FAKE || !url.pathname.startsWith("/api/")) return realFetch(input, init);
+  await ready;
+  await new Promise((r) => setTimeout(r, 120));
+  const req = new Request(url, init);
+  if (url.pathname === "/api/admin-login") return H_login(req);
+  if (url.pathname.startsWith("/api/admin/")) return H_admin(req);
+  return H_api(req);
+};
+window.__resetDemo = () => { mem.clear(); try { localStorage.removeItem(LS_KEY); } catch {} };
+window.__FAKE = FAKE;
+
+</script>
+<script>
+// Yhteiset apufunktiot kaikille sivuille.
+(() => {
+  const btn = document.querySelector(".menu-btn");
+  const nav = document.getElementById("nav");
+  if (btn && nav) {
+    btn.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(open));
+    });
+  }
+
+  const WD = ["su", "ma", "ti", "ke", "to", "pe", "la"];
+  const WD_LONG = ["Sunnuntai", "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai"];
+
+  // Suomen aika riippumatta laitteen aikavyöhykkeestä
+  function today() {
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Helsinki", year: "numeric", month: "2-digit", day: "2-digit" })
+      .formatToParts(new Date()).map((x) => [x.type, x.value]));
+    return `${p.year}-${p.month}-${p.day}`;
+  }
+  // Kellonaika Suomessa minuutteina keskiyöstä
+  function nowMinutes() {
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Helsinki", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+      .formatToParts(new Date()).map((x) => [x.type, x.value]));
+    return Number(p.hour) * 60 + Number(p.minute);
+  }
+  const parts = (d) => d.split("-").map(Number);
+  const weekday = (d) => { const [y, m, dd] = parts(d); return new Date(Date.UTC(y, m - 1, dd)).getUTCDay(); };
+  const addDays = (d, n) => { const [y, m, dd] = parts(d); return new Date(Date.UTC(y, m - 1, dd + n)).toISOString().slice(0, 10); };
+  const fiDate = (d) => { const [y, m, dd] = parts(d); return `${dd}.${m}.${y}`; };
+  const fiDateLong = (d) => `${WD_LONG[weekday(d)]} ${fiDate(d)}`;
+  const hourLabel = (h) => (h ? `${h.open.replace(/^0/, "").replace(":00", "")}–${h.close.replace(/^0/, "").replace(":00", "")}` : "Suljettu");
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+  async function api(path, { method = "GET", body, token } = {}) {
+    const res = await fetch(path, {
+      method,
+      headers: { ...(body ? { "content-type": "application/json" } : {}), ...(token ? { authorization: `Bearer ${token}` } : {}) },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    let data = {};
+    try { data = await res.json(); } catch {}
+    if (!res.ok) {
+      const err = new Error(data.error || "Yhteys palvelimeen epäonnistui. Yritä uudelleen.");
+      err.status = res.status;
+      throw err;
+    }
+    return data;
+  }
+
+  let settingsPromise;
+  const settings = () => api("/api/settings");
+
+  window.K = { nowMinutes, WD, WD_LONG, today, weekday, addDays, fiDate, fiDateLong, hourLabel, esc, api, settings };
+})();
+
+</script>
+<script>
+(() => {
+  const PAGES = {"/":{"title":"Parturi Kuura – parturi Jyväskylän keskustassa","main":"\n\n    <section class=\"hero\">\n      <div class=\"wrap\">\n        <div>\n          <h1>Hiukset kuntoon ilman jonottamista.</h1>\n          <p class=\"hero-lead\">Leikkaukset, parrat ja värit Jyväskylän keskustassa. Valitse aika verkossa, vahvistus tulee sähköpostiin heti.</p>\n          <div class=\"hero-actions\">\n            <a class=\"btn\" href=\"/varaa\">Varaa aika</a>\n            <a class=\"btn btn-ghost\" href=\"/palvelut\">Katso hinnasto</a>\n          </div>\n        </div>\n        <aside class=\"next-slots\" aria-live=\"polite\">\n          <h2>Seuraavat vapaat ajat</h2>\n          <p class=\"day-label\" data-next-label>Haetaan vapaita aikoja…</p>\n          <div class=\"slot-chips\" data-next-slots></div>\n          <a class=\"more\" href=\"/varaa\">Kaikki ajat</a>\n        </aside>\n      </div>\n    </section>\n\n    <section class=\"section section-alt\">\n      <div class=\"wrap two-col\">\n        <div>\n          <h2>Palvelut</h2>\n          <p class=\"muted\">Hinnat sisältävät pesun ja muotoilun. Maksu paikan päällä kortilla tai MobilePaylla.</p>\n          <a class=\"btn btn-quiet btn-small\" href=\"/palvelut\">Koko hinnasto</a>\n        </div>\n        <ul class=\"price-list\" data-price-list data-limit=\"4\"></ul>\n      </div>\n    </section>\n\n    <section class=\"section\">\n      <div class=\"wrap two-col\">\n        <div>\n          <h2>Aukioloajat</h2>\n          <table class=\"hours\" data-hours>\n          <tbody>\n            <tr><td>Maanantai</td><td>9–17</td></tr><tr><td>Tiistai</td><td>9–17</td></tr>\n            <tr><td>Keskiviikko</td><td>9–18</td></tr><tr><td>Torstai</td><td>9–17</td></tr>\n            <tr><td>Perjantai</td><td>9–16</td></tr><tr><td>Lauantai</td><td>10–14</td></tr>\n            <tr><td>Sunnuntai</td><td>Suljettu</td></tr>\n          </tbody>\n        </table>\n        </div>\n        <div>\n          <h2>Löydät meidät</h2>\n          <p>Esimerkkikatu 5, 40100 Jyväskylä<br>Sisäänkäynti kadun puolelta, esteetön kulku.</p>\n          <p>Lähin pysäköinti kauppakeskuksen parkkihallissa, kävelymatkaa kaksi minuuttia.</p>\n          <p><a href=\"tel:0400000000\">040 000 0000</a></p>\n        </div>\n      </div>\n    </section>\n  "},"/palvelut":{"title":"Palvelut ja hinnat – Parturi Kuura","main":"\n\n    <div class=\"wrap page-head\">\n      <h1>Palvelut ja hinnat</h1>\n      <p class=\"muted\">Kesto on arvio. Jos et tiedä, mikä sopii, varaa hiustenleikkaus ja kysy paikan päällä.</p>\n    </div>\n    <section class=\"wrap booking\">\n      <ul class=\"price-list\" data-price-list></ul>\n      <p style=\"margin-top:28px\"><a class=\"btn\" href=\"/varaa\">Varaa aika</a></p>\n    </section>\n  "},"/varaa":{"title":"Varaa aika – Parturi Kuura","main":"\n\n    <div class=\"wrap page-head\">\n      <h1>Varaa aika</h1>\n    </div>\n    <section class=\"wrap booking\" id=\"booking\">\n      <ol class=\"steps\" aria-label=\"Varauksen vaiheet\">\n        <li data-step=\"1\" class=\"active\">Palvelu</li>\n        <li data-step=\"2\">Aika</li>\n        <li data-step=\"3\">Yhteystiedot</li>\n      </ol>\n\n      <div class=\"panel\" data-panel=\"service\">\n        <h2>Valitse palvelu</h2>\n        <div class=\"service-options\" data-services role=\"radiogroup\" aria-label=\"Palvelu\"><p class=\"muted\"><span class=\"spinner\"></span> Ladataan…</p></div>\n      </div>\n\n      <div class=\"panel\" data-panel=\"time\" hidden>\n        <h2>Valitse päivä ja aika</h2>\n        <div class=\"day-strip\" data-days role=\"group\" aria-label=\"Päivä\"></div>\n        <div data-slots aria-live=\"polite\"></div>\n      </div>\n\n      <form class=\"panel\" data-panel=\"details\" hidden novalidate>\n        <h2>Yhteystiedot</h2>\n        <dl class=\"summary\" data-summary></dl>\n        <div class=\"form-grid\">\n          <label class=\"field\">Nimi<input name=\"name\" autocomplete=\"name\" required maxlength=\"80\"></label>\n          <label class=\"field\">Puhelin<input name=\"phone\" type=\"tel\" autocomplete=\"tel\" required maxlength=\"20\"></label>\n          <label class=\"field full\">Sähköposti <span class=\"hint\">Vahvistus ja peruutuslinkki lähetetään tähän.</span><input name=\"email\" type=\"email\" autocomplete=\"email\" required maxlength=\"120\"></label>\n          <label class=\"field full\">Lisätietoa <span class=\"hint\">Vapaaehtoinen, esim. toive leikkauksesta.</span><textarea name=\"note\" rows=\"3\" maxlength=\"500\"></textarea></label>\n          <label class=\"hp\" aria-hidden=\"true\">Jätä tyhjäksi<input name=\"website\" tabindex=\"-1\" autocomplete=\"off\"></label>\n        </div>\n        <p class=\"muted\" style=\"margin-top:16px;font-size:.92rem\">Käsittelemme tietoja vain ajanvarausta varten. <a href=\"/tietosuoja\">Tietosuojaseloste</a></p>\n        <div class=\"notice error\" data-form-error hidden></div>\n        <div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:8px\">\n          <button class=\"btn\" type=\"submit\" data-submit>Vahvista varaus</button>\n          <button class=\"btn btn-quiet\" type=\"button\" data-back>Vaihda aikaa</button>\n        </div>\n      </form>\n\n      <div class=\"panel\" data-panel=\"done\" hidden tabindex=\"-1\">\n        <div class=\"confirm-head\"><div class=\"tick\" aria-hidden=\"true\">✓</div><h2>Aika on varattu</h2></div>\n        <dl class=\"summary\" data-done-summary></dl>\n        <p data-done-email></p>\n        <div data-email-preview></div>\n        <p style=\"margin-top:20px\"><a class=\"btn btn-quiet\" href=\"/varaa\">Tee uusi varaus</a></p>\n      </div>\n    </section>\n  "},"/yhteystiedot":{"title":"Yhteystiedot – Parturi Kuura","main":"\n\n    <div class=\"wrap page-head\">\n      <h1>Yhteystiedot</h1>\n    </div>\n    <section class=\"wrap booking two-col\">\n      <div>\n        <h2>Ota yhteyttä</h2>\n        <p>Esimerkkikatu 5, 40100 Jyväskylä</p>\n        <p>Puhelin <a href=\"tel:0400000000\">040 000 0000</a><br>Sähköposti <a href=\"mailto:hello@parturikuura.example\">hello@parturikuura.example</a></p>\n        <p class=\"muted\">Ajanvaraus onnistuu ympäri vuorokauden verkossa. Puhelimeen vastaamme aukioloaikoina.</p>\n        <a class=\"btn\" href=\"/varaa\">Varaa aika</a>\n      </div>\n      <div>\n        <h2>Aukioloajat</h2>\n        <table class=\"hours\" data-hours>\n          <tbody>\n            <tr><td>Maanantai</td><td>9–17</td></tr><tr><td>Tiistai</td><td>9–17</td></tr>\n            <tr><td>Keskiviikko</td><td>9–18</td></tr><tr><td>Torstai</td><td>9–17</td></tr>\n            <tr><td>Perjantai</td><td>9–16</td></tr><tr><td>Lauantai</td><td>10–14</td></tr>\n            <tr><td>Sunnuntai</td><td>Suljettu</td></tr>\n          </tbody>\n        </table>\n      </div>\n    </section>\n  "},"/peru":{"title":"Varauksesi – Parturi Kuura","main":"\n\n    <div class=\"wrap page-head\">\n      <h1>Varauksesi</h1>\n    </div>\n    <section class=\"wrap booking\">\n      <div class=\"panel\" data-cancel-root aria-live=\"polite\"><p class=\"muted\"><span class=\"spinner\"></span> Haetaan varausta…</p></div>\n    </section>\n  "},"/tietosuoja":{"title":"Tietosuojaseloste – Parturi Kuura","main":"\n\n    <div class=\"wrap page-head\">\n      <h1>Tietosuojaseloste</h1>\n      <p class=\"muted\">Ajanvarausjärjestelmän asiakasrekisteri (EU:n tietosuoja-asetus 2016/679).</p>\n    </div>\n    <section class=\"wrap booking prose\">\n      <h2>Rekisterinpitäjä</h2>\n      <p>Parturi Kuura, Esimerkkikatu 5, 40100 Jyväskylä. Yhteyshenkilö tietosuoja-asioissa: hello@parturikuura.example, 040 000 0000.</p>\n      <h2>Mitä tietoja keräämme</h2>\n      <ul><li>Nimi, puhelinnumero ja sähköpostiosoite</li><li>Varatun palvelun tiedot ja ajankohta</li><li>Lisätiedot, jotka kirjoitat itse varaukseen</li></ul>\n      <h2>Miksi käsittelemme tietoja</h2>\n      <p>Tietoja käytetään ajanvarauksen hoitamiseen: varausvahvistuksen, muistutusten ja muutosilmoitusten lähettämiseen sekä yhteydenottoon, jos aikaa joudutaan siirtämään. Käsittelyperuste on palvelusopimus asiakkaan kanssa. Emme käytä tietoja markkinointiin emmekä luovuta niitä eteenpäin.</p>\n      <h2>Säilytys</h2>\n      <p>Varaustiedot poistetaan 12 kuukauden kuluessa varatusta ajasta, ellei kirjanpitolaki edellytä pidempää säilytystä.</p>\n      <h2>Käsittelijät</h2>\n      <p>Verkkosivu ja tietokanta toimivat Netlify-palvelussa. Sähköpostit lähetetään sähköpostipalvelun kautta. Palveluntarjoajat käsittelevät tietoja vain meidän lukuumme.</p>\n      <h2>Oikeutesi</h2>\n      <p>Voit pyytää nähtäväksesi, korjattavaksi tai poistettavaksi omat tietosi ottamalla yhteyttä yllä oleviin yhteystietoihin. Sinulla on myös oikeus tehdä valitus tietosuojavaltuutetun toimistolle.</p>\n    </section>\n  "},"/hallinta":{"title":"Hallinta – Parturi Kuura","main":"\n\n    <div class=\"wrap page-head\" style=\"padding-bottom:8px\">\n      <h1>Ajanvarauksen hallinta</h1>\n    </div>\n    <section class=\"wrap booking\" id=\"admin-root\" aria-live=\"polite\"></section>\n  "}};
+  const SCRIPT_OF = {"/":"home","/palvelut":"home","/yhteystiedot":"home","/varaa":"booking","/peru":"cancel","/hallinta":"admin"};
+  const SCRIPTS = {
+"home": function(){
+// Etusivu, palvelut ja yhteystiedot: hinnasto, aukioloajat ja seuraavat vapaat ajat palvelimelta.
+(async () => {
+  const { esc, settings, api, today, addDays, weekday, hourLabel, fiDateLong } = window.K;
+  let s;
+  try {
+    s = await settings();
+  } catch {
+    document.querySelectorAll("[data-price-list]").forEach((el) => (el.innerHTML = '<li class="muted">Hinnaston lataus epäonnistui. Päivitä sivu.</li>'));
+    const label = document.querySelector("[data-next-label]");
+    if (label) label.textContent = "Vapaita aikoja ei saatu haettua. Katso kaikki ajat varaussivulta.";
+    return;
+  }
+
+  // Hinnasto
+  document.querySelectorAll("[data-price-list]").forEach((el) => {
+    const limit = Number(el.dataset.limit) || s.services.length;
+    el.innerHTML = s.services.slice(0, limit).map((sv) => `
+      <li><span class="name">${esc(sv.name)} <span class="dur">${sv.duration} min</span></span>
+      <span class="price">${esc(sv.price)} €</span>
+      ${sv.desc ? `<span class="desc">${esc(sv.desc)}</span>` : ""}</li>`).join("");
+  });
+
+  // Aukioloajat (ma–su)
+  const order = [1, 2, 3, 4, 5, 6, 0];
+  const todayWd = weekday(today());
+  document.querySelectorAll("[data-hours] tbody").forEach((tb) => {
+    tb.innerHTML = order.map((d) => `<tr${d === todayWd ? ' class="today"' : ""}><td>${window.K.WD_LONG[d]}${d === todayWd ? " (tänään)" : ""}</td><td>${hourLabel(s.hours[d])}</td></tr>`).join("");
+  });
+
+  // Seuraavat vapaat ajat (hiustenleikkaus), etsitään enintään 10 päivää eteenpäin
+  const box = document.querySelector("[data-next-slots]");
+  if (!box) return;
+  const label = document.querySelector("[data-next-label]");
+  const service = s.services[0];
+  let day = today();
+  for (let i = 0; i < 10; i++, day = addDays(day, 1)) {
+    if (!s.hours[weekday(day)] || s.closedDates.includes(day)) continue;
+    try {
+      const r = await api(`/api/slots?date=${day}&service=${encodeURIComponent(service.id)}`);
+      if (r.slots.length) {
+        const when = i === 0 ? "Tänään" : i === 1 ? "Huomenna" : fiDateLong(day);
+        label.textContent = `${when}, ${service.name.toLowerCase()} (${service.duration} min)`;
+        box.innerHTML = r.slots.slice(0, 8).map((t) =>
+          `<a href="/varaa?palvelu=${encodeURIComponent(service.id)}&paiva=${day}&aika=${t}">${t}</a>`).join("");
+        return;
+      }
+    } catch {
+      break;
+    }
+  }
+  label.textContent = "Lähipäivät ovat täynnä. Katso myöhemmät ajat varaussivulta.";
+})();
+
+},
+"booking": function(){
+// Varaussivu: palvelu -> päivä ja aika -> yhteystiedot -> vahvistus
+(async () => {
+  const { esc, settings, api, today, addDays, weekday, fiDateLong, WD, nowMinutes } = window.K;
+  const $ = (sel) => document.querySelector(sel);
+  const panels = { service: $('[data-panel="service"]'), time: $('[data-panel="time"]'), details: $('[data-panel="details"]'), done: $('[data-panel="done"]') };
+  const state = { service: null, date: null, time: null };
+  let s;
+
+  try {
+    s = await settings();
+  } catch {
+    $("[data-services]").innerHTML = '<div class="notice error">Varausjärjestelmään ei saatu yhteyttä. Päivitä sivu tai soita meille.</div>';
+    return;
+  }
+
+  function setStep(n) {
+    document.querySelectorAll(".steps li").forEach((li) => {
+      const k = Number(li.dataset.step);
+      li.classList.toggle("active", k === n);
+      li.classList.toggle("done", k < n);
+    });
+  }
+  const scrollTo = (el) => el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+
+  // 1. Palvelut
+  $("[data-services]").innerHTML = s.services.map((sv) => `
+    <label class="service-option">
+      <input type="radio" name="service" value="${esc(sv.id)}">
+      <span class="name">${esc(sv.name)}</span>
+      <span class="meta">${sv.duration} min${sv.desc ? ` · ${esc(sv.desc)}` : ""}</span>
+      <span class="price">${esc(sv.price)} €</span>
+    </label>`).join("");
+
+  $("[data-services]").addEventListener("change", (e) => {
+    state.service = s.services.find((x) => x.id === e.target.value);
+    state.time = null;
+    panels.time.hidden = false;
+    panels.details.hidden = true;
+    setStep(2);
+    renderDays();
+    scrollTo(panels.time);
+  });
+
+  // 2. Päivät ja ajat
+  const toMin = (hhmm) => { const [h, m] = hhmm.split(":").map(Number); return h * 60 + m; };
+  // Avoinna-tieto päivälle. Tänään lasketaan suljetuksi, jos viimeinenkään aika ei enää ehdi.
+  const isOpen = (d) => {
+    const h = s.hours[weekday(d)];
+    if (!h || s.closedDates.includes(d)) return false;
+    if (d === today()) return nowMinutes() + s.minNoticeMinutes + s.slotMinutes <= toMin(h.close);
+    return true;
+  };
+  async function renderDays() {
+    const start = today();
+    const n = Math.min(s.maxDaysAhead + 1, 42);
+    const days = Array.from({ length: n }, (_, i) => addDays(start, i));
+    const auto = !state.date || !isOpen(state.date);
+    if (auto) state.date = days.find(isOpen) || null;
+    drawDays(days, start);
+    let count = await loadSlots();
+    // Automaattisesti valittu päivä täynnä: siirrytään seuraavaan päivään, jolla on vapaata.
+    for (let i = 0; auto && count === 0 && i < 14; i++) {
+      const next = days.slice(days.indexOf(state.date) + 1).find(isOpen);
+      if (!next) break;
+      state.date = next;
+      drawDays(days, start);
+      count = await loadSlots();
+    }
+  }
+  function drawDays(days, start) {
+    $("[data-days]").innerHTML = days.map((d) => {
+      const [, m, dd] = d.split("-").map(Number);
+      return `<button type="button" data-date="${d}" aria-pressed="${d === state.date}" ${isOpen(d) ? "" : "disabled"} aria-label="${fiDateLong(d)}${isOpen(d) ? "" : ", suljettu"}">
+        <span class="wd">${d === start ? "tänään" : WD[weekday(d)]}</span><span class="d">${dd}</span><span class="m">${m}.</span></button>`;
+    }).join("");
+    const strip = $("[data-days]");
+    const sel = $(`[data-date="${state.date}"]`);
+    if (sel) strip.scrollLeft = sel.offsetLeft - strip.offsetLeft - 8;
+  }
+
+  $("[data-days]").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-date]");
+    if (!b || b.disabled) return;
+    state.date = b.dataset.date;
+    state.time = null;
+    document.querySelectorAll("[data-days] button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    panels.details.hidden = true;
+    setStep(2);
+    loadSlots();
+  });
+
+  let slotReq = 0;
+  async function loadSlots() {
+    const box = $("[data-slots]");
+    if (!state.date) { box.innerHTML = '<p class="slot-note">Ei avoimia päiviä lähiaikoina.</p>'; return 0; }
+    const my = ++slotReq;
+    box.innerHTML = `<p class="slot-note"><span class="spinner"></span> Haetaan vapaita aikoja…</p>`;
+    try {
+      const r = await api(`/api/slots?date=${state.date}&service=${encodeURIComponent(state.service.id)}`);
+      if (my !== slotReq) return -1;
+      if (r.closed) { box.innerHTML = `<p class="slot-note">${esc(r.closed)}.</p>`; return 0; }
+      if (!r.slots.length) { box.innerHTML = `<p class="slot-note">${fiDateLong(state.date)} on täynnä. Valitse toinen päivä.</p>`; return 0; }
+      box.innerHTML = `<p class="slot-note">${fiDateLong(state.date)}, ${r.slots.length} vapaata aikaa</p>
+        <div class="slot-grid" role="group" aria-label="Kellonaika">${r.slots.map((t) => `<button type="button" data-time="${t}" aria-pressed="${t === state.time}">${t}</button>`).join("")}</div>`;
+      return r.slots.length;
+    } catch (err) {
+      if (my === slotReq) box.innerHTML = `<div class="notice error">${esc(err.message)}</div>`;
+      return -1;
+    }
+  }
+
+  $("[data-slots]").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-time]");
+    if (!b) return;
+    state.time = b.dataset.time;
+    document.querySelectorAll("[data-slots] button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    showDetails();
+  });
+
+  function summaryHtml(svc, date, time, end) {
+    return `<dt>Palvelu</dt><dd>${esc(svc)}</dd><dt>Aika</dt><dd>${fiDateLong(date)} klo ${time}${end ? `–${end}` : ""}</dd>`;
+  }
+
+  // 3. Yhteystiedot
+  function showDetails() {
+    const end = (() => { const [h, m] = state.time.split(":").map(Number); const t = h * 60 + m + state.service.duration; return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`; })();
+    $("[data-summary]").innerHTML = summaryHtml(state.service.name, state.date, state.time, end) + `<dt>Hinta</dt><dd>${esc(state.service.price)} €</dd>`;
+    panels.details.hidden = false;
+    $("[data-form-error]").hidden = true;
+    setStep(3);
+    scrollTo(panels.details);
+    setTimeout(() => panels.details.querySelector('input[name="name"]').focus({ preventScroll: true }), 300);
+  }
+
+  $("[data-back]").addEventListener("click", () => { panels.details.hidden = true; setStep(2); scrollTo(panels.time); });
+
+  panels.details.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const f = new FormData(panels.details);
+    const errBox = $("[data-form-error]");
+    const fields = ["name", "phone", "email"];
+    const empty = fields.find((k) => !String(f.get(k) || "").trim());
+    if (empty) {
+      errBox.textContent = { name: "Kirjoita nimesi.", phone: "Kirjoita puhelinnumerosi.", email: "Kirjoita sähköpostiosoitteesi." }[empty];
+      errBox.hidden = false;
+      panels.details.querySelector(`[name="${empty}"]`).focus();
+      return;
+    }
+    const btn = $("[data-submit]");
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Varataan…';
+    errBox.hidden = true;
+    try {
+      const r = await api("/api/book", {
+        method: "POST",
+        body: { serviceId: state.service.id, date: state.date, time: state.time, name: f.get("name"), phone: f.get("phone"), email: f.get("email"), note: f.get("note"), website: f.get("website") },
+      });
+      showDone(r, String(f.get("email")));
+    } catch (err) {
+      errBox.textContent = err.message;
+      errBox.hidden = false;
+      if (err.status === 409) { state.time = null; loadSlots(); }
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Vahvista varaus";
+    }
+  });
+
+  function showDone(r, email) {
+    const b = r.booking;
+    Object.values(panels).forEach((p) => (p.hidden = true));
+    document.querySelector(".steps").hidden = true;
+    panels.done.hidden = false;
+    $("[data-done-summary]").innerHTML = summaryHtml(b.serviceName, b.date, b.time, b.end) + `<dt>Hinta</dt><dd>${esc(b.price)} €</dd>`;
+    const msg = $("[data-done-email]");
+    if (r.email === "sent") msg.textContent = `Vahvistus ja peruutuslinkki lähetettiin osoitteeseen ${email}.`;
+    else if (r.email === "failed") msg.textContent = "Varaus on voimassa, mutta vahvistusviestin lähetys epäonnistui. Ota kuvakaappaus tästä sivusta.";
+    else msg.textContent = "Demotilassa sähköpostia ei lähetetä. Alla näet täsmälleen sen viestin, jonka asiakas saisi.";
+    if (r.preview) {
+      const wrap = $("[data-email-preview]");
+      wrap.innerHTML = `<div class="email-preview"><div class="bar">Vastaanottaja ${esc(r.preview.to)}<br><strong>${esc(r.preview.subject)}</strong></div><iframe title="Vahvistusviestin esikatselu" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
+        ${r.cancelUrl ? `<p style="margin-top:12px"><a href="${esc(r.cancelUrl)}">Kokeile peruutuslinkkiä</a></p>` : ""}`;
+      const frame = wrap.querySelector("iframe");
+      frame.addEventListener("load", () => { try { frame.style.height = frame.contentDocument.documentElement.scrollHeight + 4 + "px"; } catch {} });
+      frame.srcdoc = r.preview.html.replace("<head>", '<head><base target="_blank">').replace("<html>", "<html><head><base target=\"_blank\"></head>");
+    }
+    panels.done.focus();
+    scrollTo(panels.done);
+  }
+
+  // Esivalinnat etusivun linkistä: /varaa?palvelu=...&paiva=...&aika=...
+  const q = new URLSearchParams(__routeQuery());
+  const pre = s.services.find((x) => x.id === q.get("palvelu"));
+  if (pre) {
+    const radio = document.querySelector(`input[name="service"][value="${CSS.escape(pre.id)}"]`);
+    radio.checked = true;
+    state.service = pre;
+    if (q.get("paiva") && isOpen(q.get("paiva"))) state.date = q.get("paiva");
+    panels.time.hidden = false;
+    setStep(2);
+    const t = q.get("aika");
+    renderDays().then(() => {
+      const b = t && /^\d{2}:\d{2}$/.test(t) && document.querySelector(`[data-time="${t}"]`);
+      if (b) b.click();
+    });
+  }
+})();
+
+},
+"cancel": function(){
+// Peruutussivu: /peru?t=<tunniste>
+(async () => {
+  const { esc, api, fiDateLong } = window.K;
+  const root = document.querySelector("[data-cancel-root]");
+  const t = new URLSearchParams(__routeQuery()).get("t");
+
+  const render = (b, note = "") => {
+    const status = b.status === "cancelled"
+      ? '<div class="notice info">Tämä varaus on peruttu.</div>'
+      : b.canCancel
+        ? `<p class="muted">Voit perua ajan verkossa viimeistään ${b.cancelCutoffHours} tuntia ennen.</p>
+           <button class="btn btn-danger" data-do-cancel>Peru varaus</button>`
+        : `<div class="notice info">Aikaa ei voi enää perua verkossa. Soita ${esc(b.phone)}.</div>`;
+    root.innerHTML = `
+      <h2>${b.status === "cancelled" ? "Peruttu varaus" : "Varauksesi on voimassa"}</h2>
+      <dl class="summary">
+        <dt>Palvelu</dt><dd>${esc(b.serviceName)}</dd>
+        <dt>Aika</dt><dd>${fiDateLong(b.date)} klo ${b.time}–${b.end}</dd>
+        <dt>Hinta</dt><dd>${esc(b.price)} €</dd>
+        <dt>Nimi</dt><dd>${esc(b.name)}</dd>
+      </dl>
+      ${note}${status}
+      ${b.status === "cancelled" ? '<p style="margin-top:16px"><a class="btn" href="/varaa">Varaa uusi aika</a></p>' : ""}`;
+  };
+
+  if (!t) {
+    root.innerHTML = '<div class="notice error">Linkistä puuttuu varauksen tunniste. Avaa linkki uudelleen vahvistusviestistä.</div>';
+    return;
+  }
+  try {
+    render(await api(`/api/booking?t=${encodeURIComponent(t)}`));
+  } catch (err) {
+    root.innerHTML = `<div class="notice error">${esc(err.message)}</div>`;
+    return;
+  }
+
+  root.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-do-cancel]");
+    if (!btn) return;
+    if (!(await __confirm("Perutaanko varaus?"))) return;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Perutaan…';
+    try {
+      const r = await api("/api/cancel", { method: "POST", body: { t } });
+      const note = r.email === "sent" ? " Vahvistus peruutuksesta lähetettiin sähköpostiisi." : r.email === "demo" ? " (Demotilassa sähköpostia ei lähetetä.)" : "";
+      render(r, `<div class="notice ok">Varaus peruttu.${note}</div>`);
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = "Peru varaus";
+      root.insertAdjacentHTML("beforeend", `<div class="notice error">${esc(err.message)}</div>`);
+    }
+  });
+})();
+
+},
+"admin": function(){
+// Yrittäjän hallintanäkymä: varaukset, aukioloajat, aikojen sulkeminen ja palvelut.
+(async () => {
+  const { esc, api, today, addDays, weekday, fiDate, fiDateLong, WD_LONG } = window.K;
+  const root = document.getElementById("admin-root");
+  const store = {
+    get: () => { try { return sessionStorage.getItem("kuura-admin") || ""; } catch { return ""; } },
+    set: (v) => { try { v ? sessionStorage.setItem("kuura-admin", v) : sessionStorage.removeItem("kuura-admin"); } catch {} },
+  };
+  let token = store.get();
+  let demo = false;
+  try { demo = (await api("/api/settings")).demo.admin; } catch {}
+
+  const call = async (path, opts = {}) => {
+    try {
+      return await api(path, { ...opts, token });
+    } catch (err) {
+      if (err.status === 401) { token = ""; store.set(""); renderLogin("Istunto vanheni, kirjaudu uudelleen."); }
+      throw err;
+    }
+  };
+  const flash = (el, kind, text) => { el.innerHTML = `<div class="notice ${kind}">${esc(text)}</div>`; };
+  const emailNote = (s) => (s === "sent" ? "Asiakkaalle lähetettiin sähköposti." : s === "demo" ? "Demotilassa sähköpostia ei lähetetä." : s === "failed" ? "Sähköpostin lähetys epäonnistui." : "");
+  const mondayOf = (d) => addDays(d, -((weekday(d) + 6) % 7));
+
+  // ---------- Kirjautuminen ----------
+  function renderLogin(msg = "") {
+    root.innerHTML = `
+      <form class="panel" style="max-width:420px" data-login>
+        <h2>Kirjaudu</h2>
+        ${msg ? `<div class="notice info">${esc(msg)}</div>` : ""}
+        ${demo ? `<div class="notice info">Demotila: salasana on <strong>kuura-demo</strong>. Oikealla asiakkaalla salasana asetetaan Netlifyssä.</div>` : ""}
+        <label class="field">Salasana<input type="password" name="password" autocomplete="current-password" required></label>
+        <div data-login-error></div>
+        <p style="margin-top:16px"><button class="btn" type="submit">Kirjaudu</button></p>
+      </form>`;
+    const form = root.querySelector("[data-login]");
+    form.password.focus();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      try {
+        const r = await api("/api/admin-login", { method: "POST", body: { password: form.password.value } });
+        token = r.token;
+        store.set(token);
+        renderApp();
+      } catch (err) {
+        flash(form.querySelector("[data-login-error]"), "error", err.message);
+      }
+    });
+  }
+
+  // ---------- Runko ----------
+  const tabs = [["bookings", "Varaukset"], ["block", "Sulje aika"], ["hours", "Aukioloajat"], ["services", "Palvelut"]];
+  let current = "bookings";
+
+  function renderApp() {
+    root.innerHTML = `
+      <div class="admin-bar">
+        <div class="tabs" role="tablist">${tabs.map(([id, label]) => `<button role="tab" data-tab="${id}" aria-selected="${id === current}">${label}</button>`).join("")}</div>
+        <button class="btn btn-quiet btn-small" data-logout>Kirjaudu ulos</button>
+      </div>
+      <div data-view></div>`;
+    root.querySelector(".tabs").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-tab]");
+      if (!b) return;
+      current = b.dataset.tab;
+      root.querySelectorAll("[data-tab]").forEach((x) => x.setAttribute("aria-selected", String(x === b)));
+      show();
+    });
+    root.querySelector("[data-logout]").addEventListener("click", () => { token = ""; store.set(""); renderLogin(); });
+    show();
+  }
+  const view = () => root.querySelector("[data-view]");
+  const show = () => ({ bookings: viewBookings, block: viewBlock, hours: viewHours, services: viewServices })[current]();
+
+  // ---------- Varaukset ----------
+  let weekStart = mondayOf(today());
+  let showCancelled = false;
+
+  async function viewBookings() {
+    const end = addDays(weekStart, 6);
+    view().innerHTML = `
+      <div class="week-nav">
+        <button class="btn btn-quiet btn-small" data-week="-7" aria-label="Edellinen viikko">‹ Edellinen</button>
+        <strong>${fiDate(weekStart)} – ${fiDate(end)}</strong>
+        <button class="btn btn-quiet btn-small" data-week="7" aria-label="Seuraava viikko">Seuraava ›</button>
+        <button class="btn btn-quiet btn-small" data-week="0">Tämä viikko</button>
+        <label class="check"><input type="checkbox" data-show-cancelled ${showCancelled ? "checked" : ""}> Näytä perutut</label>
+      </div>
+      <div data-msg></div>
+      <div data-list><p class="muted"><span class="spinner"></span> Ladataan…</p></div>`;
+    view().querySelector(".week-nav").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-week]");
+      if (!b) return;
+      const n = Number(b.dataset.week);
+      weekStart = n === 0 ? mondayOf(today()) : addDays(weekStart, n);
+      viewBookings();
+    });
+    view().querySelector("[data-show-cancelled]").addEventListener("change", (e) => { showCancelled = e.target.checked; viewBookings(); });
+
+    let data;
+    try {
+      data = await call(`/api/admin/bookings?from=${weekStart}&to=${end}`);
+    } catch (err) {
+      if (err.status !== 401) flash(view().querySelector("[data-list]"), "error", err.message);
+      return;
+    }
+    const list = view().querySelector("[data-list]");
+    const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
+    const active = data.bookings.filter((b) => b.status === "confirmed").length;
+    list.innerHTML = `<p class="muted">${active} varausta tällä viikolla.</p>` + days.map((d) => {
+      const items = [
+        ...data.bookings.filter((b) => b.date === d && (showCancelled || b.status !== "cancelled")).map((b) => ({ t: b.time, html: bookingRow(b) })),
+        ...data.blocks.filter((b) => b.date === d).map((b) => ({ t: b.start, html: blockRow(b) })),
+      ].sort((a, b) => a.t.localeCompare(b.t));
+      return `<section class="admin-day${d === today() ? " is-today" : ""}">
+        <h3>${fiDateLong(d)}${d === today() ? " · tänään" : ""}</h3>
+        ${items.length ? items.map((x) => x.html).join("") : '<p class="muted empty-day">Ei varauksia.</p>'}
+      </section>`;
+    }).join("");
+  }
+
+  function bookingRow(b) {
+    const cancelled = b.status === "cancelled";
+    return `<article class="booking-row${cancelled ? " is-cancelled" : ""}" data-id="${esc(b.id)}" data-date="${esc(b.date)}">
+      <div class="when">${esc(b.time)}<span>${esc(b.end)}</span></div>
+      <div class="who">
+        <strong>${esc(b.name)}</strong> <span class="muted">${esc(b.serviceName)}, ${esc(b.price)} €</span>
+        ${cancelled ? `<span class="badge">Peruttu${b.cancelledBy === "customer" ? " (asiakas)" : ""}</span>` : ""}
+        ${b.status === "pending" ? '<span class="badge">Kesken</span>' : ""}
+        <div class="contact"><a href="tel:${esc(b.phone.replace(/\s/g, ""))}">${esc(b.phone)}</a> <a href="mailto:${esc(b.email)}">${esc(b.email)}</a></div>
+        ${b.note ? `<p class="note">${esc(b.note)}</p>` : ""}
+        ${b.movedFrom ? `<p class="muted small">Siirretty ajasta ${fiDate(b.movedFrom.date)} klo ${esc(b.movedFrom.time)}</p>` : ""}
+        <div data-row-extra></div>
+      </div>
+      ${cancelled ? "" : `<div class="actions"><button class="btn btn-quiet btn-small" data-move>Siirrä</button><button class="btn btn-danger btn-small" data-cancel>Peru</button></div>`}
+    </article>`;
+  }
+
+  function blockRow(b) {
+    return `<article class="booking-row is-block" data-block-id="${esc(b.id)}" data-date="${esc(b.date)}">
+      <div class="when">${esc(b.start)}<span>${esc(b.end)}</span></div>
+      <div class="who"><strong>Suljettu</strong> <span class="muted">${esc(b.reason || "")}</span></div>
+      <div class="actions"><button class="btn btn-quiet btn-small" data-unblock>Avaa aika</button></div>
+    </article>`;
+  }
+
+  root.addEventListener("click", async (e) => {
+    const row = e.target.closest(".booking-row");
+    if (!row) return;
+    const msg = view().querySelector("[data-msg]");
+    const { id, date, blockId } = row.dataset;
+
+    if (e.target.closest("[data-cancel]")) {
+      if (!(await __confirm("Perutaanko varaus? Asiakkaalle lähetetään ilmoitus sähköpostiin."))) return;
+      try {
+        const r = await call("/api/admin/cancel", { method: "POST", body: { date, id } });
+        await viewBookings();
+        flash(view().querySelector("[data-msg]"), "ok", `Varaus peruttu. ${emailNote(r.email)}`);
+      } catch (err) { if (msg) flash(msg, "error", err.message); }
+    }
+
+    if (e.target.closest("[data-unblock]")) {
+      try {
+        await call("/api/admin/unblock", { method: "POST", body: { date, id: blockId } });
+        await viewBookings();
+        flash(view().querySelector("[data-msg]"), "ok", "Aika avattiin varattavaksi.");
+      } catch (err) { if (msg) flash(msg, "error", err.message); }
+    }
+
+    if (e.target.closest("[data-move]")) {
+      const extra = row.querySelector("[data-row-extra]");
+      extra.innerHTML = `<div class="move-box">
+        <label class="field">Uusi päivä<input type="date" value="${date}" min="${today()}" data-move-date></label>
+        <div data-move-slots class="slot-grid"></div>
+        <p style="margin-top:8px"><button class="btn btn-quiet btn-small" data-move-close>Sulje</button></p>
+      </div>`;
+      const load = async () => {
+        const nd = extra.querySelector("[data-move-date]").value;
+        const box = extra.querySelector("[data-move-slots]");
+        box.innerHTML = '<span class="spinner"></span>';
+        try {
+          const r = await call(`/api/admin/slots?date=${date}&id=${id}&newDate=${nd}`);
+          box.innerHTML = r.closed ? `<p class="muted">${esc(r.closed)}</p>` : r.slots.length
+            ? r.slots.map((t) => `<button type="button" data-move-to="${t}">${t}</button>`).join("")
+            : '<p class="muted">Ei vapaita aikoja.</p>';
+        } catch (err) { box.innerHTML = `<div class="notice error">${esc(err.message)}</div>`; }
+      };
+      extra.querySelector("[data-move-date]").addEventListener("change", load);
+      load();
+    }
+
+    if (e.target.closest("[data-move-close]")) row.querySelector("[data-row-extra]").innerHTML = "";
+
+    const to = e.target.closest("[data-move-to]");
+    if (to) {
+      const nd = row.querySelector("[data-move-date]").value;
+      if (!(await __confirm(`Siirretäänkö varaus aikaan ${fiDateLong(nd)} klo ${to.dataset.moveTo}?`))) return;
+      try {
+        const r = await call("/api/admin/move", { method: "POST", body: { date, id, newDate: nd, newTime: to.dataset.moveTo } });
+        await viewBookings();
+        flash(view().querySelector("[data-msg]"), "ok", `Varaus siirretty. ${emailNote(r.email)}`);
+      } catch (err) { if (msg) flash(msg, "error", err.message); }
+    }
+  });
+
+  // ---------- Sulje aika ----------
+  function viewBlock() {
+    view().innerHTML = `
+      <form class="panel" data-block-form style="max-width:560px">
+        <h2>Sulje aika</h2>
+        <p class="muted">Esimerkiksi lounas, koulutus tai lääkärikäynti. Suljettuja aikoja ei voi varata. Koko päivän voit sulkea Aukioloajat-välilehdeltä.</p>
+        <div class="form-grid">
+          <label class="field full">Päivä<input type="date" name="date" value="${today()}" min="${today()}" required></label>
+          <label class="field">Alkaen<input type="time" name="start" value="12:00" step="1800" required></label>
+          <label class="field">Asti<input type="time" name="end" value="12:30" step="1800" required></label>
+          <label class="field full">Syy <span class="hint">Näkyy vain sinulle.</span><input name="reason" maxlength="80" placeholder="Lounas"></label>
+        </div>
+        <div data-msg></div>
+        <p style="margin-top:16px"><button class="btn" type="submit">Sulje aika</button></p>
+      </form>`;
+    const form = view().querySelector("[data-block-form]");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const msg = form.querySelector("[data-msg]");
+      try {
+        const r = await call("/api/admin/block", { method: "POST", body: { date: form.date.value, start: form.start.value, end: form.end.value, reason: form.reason.value } });
+        flash(msg, "ok", `Suljettu ${fiDateLong(r.block.date)} klo ${r.block.start}–${r.block.end}. Voit avata ajan Varaukset-näkymästä.`);
+      } catch (err) { flash(msg, "error", err.message); }
+    });
+  }
+
+  // ---------- Aukioloajat ----------
+  async function viewHours() {
+    view().innerHTML = '<p class="muted"><span class="spinner"></span> Ladataan…</p>';
+    let s;
+    try { s = await call("/api/admin/settings"); } catch (err) { if (err.status !== 401) flash(view(), "error", err.message); return; }
+    const order = [1, 2, 3, 4, 5, 6, 0];
+    const futureClosed = s.closedDates.filter((d) => d >= today());
+    view().innerHTML = `
+      <form class="panel" data-hours-form>
+        <h2>Aukioloajat</h2>
+        <div class="hours-edit">
+          ${order.map((d) => { const h = s.hours[d]; return `
+            <div class="hours-row" data-day="${d}">
+              <label class="check"><input type="checkbox" name="open-${d}" ${h ? "checked" : ""}> ${WD_LONG[d]}</label>
+              <input type="time" step="1800" name="from-${d}" value="${h ? h.open : "09:00"}" aria-label="${WD_LONG[d]} alkaen" ${h ? "" : "disabled"}>
+              <span>–</span>
+              <input type="time" step="1800" name="to-${d}" value="${h ? h.close : "17:00"}" aria-label="${WD_LONG[d]} asti" ${h ? "" : "disabled"}>
+            </div>`; }).join("")}
+        </div>
+
+        <h2 style="margin-top:28px">Suljetut päivät</h2>
+        <p class="muted">Loma, pyhät tai sairastuminen. Jo tehdyt varaukset näille päiville eivät peru itsestään: tarkista ne Varaukset-näkymästä.</p>
+        <div class="closed-add"><input type="date" min="${today()}" data-closed-input aria-label="Suljettava päivä"><button type="button" class="btn btn-quiet btn-small" data-closed-add>Lisää</button></div>
+        <ul class="closed-list" data-closed-list>${futureClosed.map((d) => closedItem(d)).join("") || '<li class="muted">Ei suljettuja päiviä.</li>'}</ul>
+
+        <h2 style="margin-top:28px">Varaussäännöt</h2>
+        <div class="form-grid">
+          <label class="field">Varaus viimeistään (min ennen)<input type="number" name="minNoticeMinutes" min="0" max="2880" value="${s.minNoticeMinutes}"></label>
+          <label class="field">Varattavissa päivää eteenpäin<input type="number" name="maxDaysAhead" min="1" max="365" value="${s.maxDaysAhead}"></label>
+          <label class="field">Asiakas voi perua (h ennen)<input type="number" name="cancelCutoffHours" min="0" max="168" value="${s.cancelCutoffHours}"></label>
+        </div>
+        <div data-msg></div>
+        <p style="margin-top:16px"><button class="btn" type="submit">Tallenna muutokset</button></p>
+      </form>`;
+    const form = view().querySelector("[data-hours-form]");
+    let closed = [...s.closedDates];
+    const list = form.querySelector("[data-closed-list]");
+    const redraw = () => { const f = closed.filter((d) => d >= today()).sort(); list.innerHTML = f.map(closedItem).join("") || '<li class="muted">Ei suljettuja päiviä.</li>'; };
+
+    form.addEventListener("change", (e) => {
+      const m = e.target.name?.match(/^open-(\d)$/);
+      if (m) form.querySelectorAll(`[name="from-${m[1]}"], [name="to-${m[1]}"]`).forEach((i) => (i.disabled = !e.target.checked));
+    });
+    form.querySelector("[data-closed-add]").addEventListener("click", () => {
+      const v = form.querySelector("[data-closed-input]").value;
+      if (v && !closed.includes(v)) { closed.push(v); redraw(); }
+    });
+    list.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-remove-closed]");
+      if (b) { closed = closed.filter((d) => d !== b.dataset.removeClosed); redraw(); }
+    });
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const hours = {};
+      for (const d of order) hours[d] = form[`open-${d}`].checked ? { open: form[`from-${d}`].value, close: form[`to-${d}`].value } : null;
+      const body = { ...s, hours, closedDates: closed, minNoticeMinutes: Number(form.minNoticeMinutes.value), maxDaysAhead: Number(form.maxDaysAhead.value), cancelCutoffHours: Number(form.cancelCutoffHours.value) };
+      const msg = form.querySelector("[data-msg]");
+      try { s = await call("/api/admin/settings", { method: "PUT", body }); flash(msg, "ok", "Tallennettu. Muutokset näkyvät varaussivulla heti."); }
+      catch (err) { flash(msg, "error", err.message); }
+    });
+  }
+  const closedItem = (d) => `<li>${fiDateLong(d)} <button type="button" class="btn btn-quiet btn-small" data-remove-closed="${d}" aria-label="Poista ${fiDate(d)}">Poista</button></li>`;
+
+  // ---------- Palvelut ----------
+  async function viewServices() {
+    view().innerHTML = '<p class="muted"><span class="spinner"></span> Ladataan…</p>';
+    let s;
+    try { s = await call("/api/admin/settings"); } catch (err) { if (err.status !== 401) flash(view(), "error", err.message); return; }
+    const row = (sv = { id: "", name: "", duration: 30, price: 0, desc: "" }) => `
+      <fieldset class="service-edit" data-sid="${esc(sv.id)}">
+        <legend class="visually-hidden">Palvelu</legend>
+        <label class="field">Nimi<input name="name" value="${esc(sv.name)}" maxlength="60" required></label>
+        <label class="field">Kesto (min)<input name="duration" type="number" min="15" max="480" step="15" value="${sv.duration}"></label>
+        <label class="field">Hinta (€)<input name="price" type="number" min="0" step="0.5" value="${sv.price}"></label>
+        <label class="field wide">Kuvaus<input name="desc" value="${esc(sv.desc)}" maxlength="160"></label>
+        <button type="button" class="btn btn-quiet btn-small" data-remove-service>Poista</button>
+      </fieldset>`;
+    view().innerHTML = `
+      <form class="panel" data-services-form>
+        <h2>Palvelut ja hinnat</h2>
+        <p class="muted">Kesto määrää, kuinka pitkän ajan varaus vie kalenterista. Muutokset eivät koske jo tehtyjä varauksia.</p>
+        <div data-rows>${s.services.map(row).join("")}</div>
+        <p><button type="button" class="btn btn-quiet btn-small" data-add-service>Lisää palvelu</button></p>
+        <div data-msg></div>
+        <p style="margin-top:16px"><button class="btn" type="submit">Tallenna palvelut</button></p>
+      </form>`;
+    const form = view().querySelector("[data-services-form]");
+    const rows = form.querySelector("[data-rows]");
+    form.querySelector("[data-add-service]").addEventListener("click", () => { rows.insertAdjacentHTML("beforeend", row()); rows.lastElementChild.querySelector("input").focus(); });
+    rows.addEventListener("click", (e) => { if (e.target.closest("[data-remove-service]")) e.target.closest("fieldset").remove(); });
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const services = [...rows.querySelectorAll("fieldset")].map((f) => ({
+        id: f.dataset.sid, name: f.querySelector('[name="name"]').value, duration: Number(f.querySelector('[name="duration"]').value),
+        price: Number(f.querySelector('[name="price"]').value), desc: f.querySelector('[name="desc"]').value,
+      }));
+      const msg = form.querySelector("[data-msg]");
+      try {
+        s = await call("/api/admin/settings", { method: "PUT", body: { ...s, services } });
+        rows.innerHTML = s.services.map(row).join("");
+        flash(msg, "ok", "Palvelut tallennettu.");
+      } catch (err) { flash(msg, "error", err.message); }
+    });
+  }
+
+  token ? renderApp() : renderLogin();
+})();
+
+}
+  };
+  let query = new URLSearchParams();
+  window.__routeQuery = () => "?" + query.toString();
+
+  // Sivun sisäinen vahvistusikkuna (selaimen confirm() ei toimi esikatselussa)
+  window.__confirm = (msg) => new Promise((resolve) => {
+    const d = document.createElement("div");
+    d.className = "k-dialog";
+    d.setAttribute("role", "dialog");
+    d.setAttribute("aria-modal", "true");
+    d.innerHTML = '<div class="k-dialog-box"><p></p><div><button class="btn" data-yes>Kyllä</button><button class="btn btn-quiet" data-no>Peruuta</button></div></div>';
+    d.querySelector("p").textContent = msg;
+    const done = (v) => { d.remove(); resolve(v); };
+    d.addEventListener("click", (e) => { if (e.target.closest("[data-yes]")) done(true); else if (e.target.closest("[data-no]") || e.target === d) done(false); });
+    document.body.appendChild(d);
+    d.querySelector("[data-yes]").focus();
+  });
+
+  const main = document.getElementById("main");
+  function go(href, push = true) {
+    const u = new URL(href, window.__FAKE);
+    const path = PAGES[u.pathname] ? u.pathname : "/";
+    query = u.searchParams;
+    const p = PAGES[path];
+    document.title = p.title;
+    main.innerHTML = p.main;
+    document.querySelectorAll("#nav a:not(.btn)").forEach((a) => a.toggleAttribute("aria-current", a.getAttribute("href") === path));
+    document.querySelectorAll("#nav a[aria-current]").forEach((a) => a.setAttribute("aria-current", "page"));
+    const nav = document.getElementById("nav");
+    nav?.classList.remove("open");
+    document.querySelector(".menu-btn")?.setAttribute("aria-expanded", "false");
+    window.scrollTo(0, 0);
+    const s = SCRIPT_OF[path];
+    if (s) SCRIPTS[s]();
+  }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const href = a.getAttribute("href");
+    if (/^(tel:|mailto:|https?:\/\/(?!parturikuura\.example))/.test(href)) return;
+    const u = new URL(href, window.__FAKE);
+    if (u.origin !== window.__FAKE) return;
+    e.preventDefault();
+    go(u.pathname + u.search);
+  });
+  document.querySelector("[data-reset]").addEventListener("click", async () => {
+    if (!(await window.__confirm("Tyhjennetäänkö kaikki demovaraukset ja asetukset tästä selaimesta?"))) return;
+    window.__resetDemo();
+    try { sessionStorage.removeItem("kuura-admin"); } catch {}
+    location.reload();
+  });
+  go("/");
+})();
+</script>

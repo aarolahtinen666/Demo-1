@@ -1,0 +1,15 @@
+{
+  "name": "parturi-kuura",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Monisivuinen parturin verkkosivu varauskalenterilla, vahvistusviesteillä ja hallintanäkymällä (Netlify Functions + Blobs).",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  },
+  "engines": { "node": ">=20" }
+}
