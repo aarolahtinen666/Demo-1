@@ -98,7 +98,14 @@ async function lockSlots(date, times, value, { reuseForId } = {}) {
   const acquired = [];
   for (const t of times) {
     const key = `slots/${date}/${t}`;
-    const { modified } = await db().setJSON(key, value, { onlyIfNew: true });
+    const res = await db().setJSON(key, value, { onlyIfNew: true });
+    // Vanhat @netlify/blobs-versiot eivät tue ehdollista kirjoitusta (ne palauttavat undefined).
+    // Pysäytetään silloin selkeään virheeseen, ettei tuplavaraus pääse hiljaa läpi.
+    if (!res || typeof res.modified !== "boolean") {
+      await Promise.all(acquired.map((k) => db().delete(k)));
+      throw new Error("@netlify/blobs ei tue ehdollisia kirjoituksia (onlyIfNew). Päivitä kirjasto versioon 10.");
+    }
+    const { modified } = res;
     if (modified) {
       acquired.push(key);
       continue;
